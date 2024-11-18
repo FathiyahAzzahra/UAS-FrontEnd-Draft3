@@ -1,0 +1,155 @@
+        :root {
+            --primary: #5F6F52;
+            /* Hijau tua */
+            --secondary: #A9B388;
+            /* Hijau muda */
+            --background: #FEFAE0;
+            /* Krem */
+            --accent: #B99470;
+            /* Coklat muda */
+        }
+
+        :root {
+            --primary: #5F6F52;
+            /* Hijau tua */
+            --secondary: #A9B388;
+            /* Hijau muda */
+            --background: #FEFAE0;
+            /* Krem */
+            --accent: #B99470;
+            /* Coklat muda */
+        }
+
+        /* Override Bootstrap Colors */
+        .bg-primary-custom {
+            background-color: var(--primary) !important;
+        }
+
+        .bg-secondary-custom {
+            background-color: var(--secondary) !important;
+        }
+
+        .text-primary-custom {
+            color: var(--primary) !important;
+        }
+
+        .text-secondary-custom {
+            color: var(--secondary) !important;
+        }
+
+        .text-accent-custom {
+            color: var(--accent) !important;
+        }
+
+
+
+        body {
+            background-color: var(--background);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: var(--primary);
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: var(--background) !important;
+        }
+
+        .nav-link:hover {
+            color: var(--accent) !important;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .btn-secondary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .card {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .accordion-button {
+            background-color: var(--secondary);
+            color: var(--background);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: var(--accent);
+            color: var(--background);
+        }
+
+        .social-icons a {
+            color: var(--background);
+        }
+
+        .social-icons a:hover {
+            color: var(--accent);
+        }
+
+        /* Banner Styling */
+        .banner {
+            background-color: var(--secondary);
+            border-radius: 15px;
+            padding: 40px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+        }
+
+        .banner h3 {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .banner p {
+            color: var(--background);
+            font-size: 1.1rem;
+        }
+
+        .banner .btn-cta {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: var(--background);
+        }
+
+        .banner .btn-cta:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: var(--background);
+        }
+
+        /* Footer Styling Minimal */
+        footer {
+            padding: 40px 0;
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent);
+        }
