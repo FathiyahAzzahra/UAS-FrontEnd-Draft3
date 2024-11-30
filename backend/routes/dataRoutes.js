@@ -1,45 +1,52 @@
 const express = require('express');
-const router = express.Router(); // Pastikan router diinisialisasi di awal
-const DataModel = require('../models/dataModel'); // Pastikan file ini ada
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const User = require('../models/dataModel');
+const router = express.Router();
+const SECRET_KEY = 'mysecretkey';
 
-router.post('/', async (req, res) => {
+// Login Route
+router.post('/login', async (req, res) => {
     try {
-        // Validasi sederhana
-        if (!req.body.username || !req.body.password) {
-            return res.status(400).json({ error: 'Username and password are required' });
+        const { email, password } = req.body;
+
+        // Cari pengguna berdasarkan email
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: 'Email atau password salah' });
         }
 
-        // Simpan ke MongoDB
-        const newUser = new DataModel({
-            username: req.body.username,
-            password: req.body.password, // Ini hanya contoh. Jangan simpan password langsung, gunakan hashing!
-        });
-        const savedUser = await newUser.save();
+        // Verifikasi password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Email atau password salah' });
+        }
 
-        res.status(201).json({ message: 'User registered successfully', data: savedUser });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+        // Buat token JWT
+        const token = jwt.sign({ id: user._id, username: user.username }, SECRET_KEY, { expiresIn: '1h' });
+
+        // Kirim token dan username ke frontend
+        res.status(200).json({ message: 'Login berhasil', token, username: user.username });
+    } catch (error) {
+        res.status(500).json({ message: 'Terjadi kesalahan server' });
     }
 });
 
 
-
-
-
-const User = require('../models/dataModel');
-const jwt = require('jsonwebtoken');
-const SECRET_KEY = 'mysecretkey';
-
 // Register
 router.post('/register', async (req, res) => {
     try {
-        const { username, password } = req.body;
-        if (!username || !password) return res.status(400).json({ message: 'All fields are required' });
+        const { username, email, password } = req.body;
+        if (!username || !email || !password) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
 
-        const userExists = await User.findOne({ username });
-        if (userExists) return res.status(400).json({ message: 'Username already exists' });
+        const userExists = await User.findOne({ $or: [{ username }, { email }] });
+        if (userExists) {
+            return res.status(400).json({ message: 'Username or email already exists' });
+        }
 
-        const newUser = new User({ username, password });
+        const newUser = new User({ username, email, password });
         await newUser.save();
         res.status(201).json({ message: 'User registered successfully' });
     } catch (err) {
@@ -47,35 +54,4 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// Login
-router.post('/login', async (req, res) => {
-    try {
-        const { username, password } = req.body;
-        const user = await User.findOne({ username });
-        if (!user) return res.status(400).json({ message: 'Invalid username or password' });
-
-        const isMatch = await user.comparePassword(password);
-        if (!isMatch) return res.status(400).json({ message: 'Invalid username or password' });
-
-        const token = jwt.sign({ id: user._id }, SECRET_KEY, { expiresIn: '1h' });
-        res.status(200).json({ message: 'Login successful', token });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-// Protected Route Example
-router.get('/profile', async (req, res) => {
-    const token = req.headers['authorization'];
-    if (!token) return res.status(401).json({ message: 'No token provided' });
-
-    try {
-        const decoded = jwt.verify(token, SECRET_KEY);
-        const user = await User.findById(decoded.id).select('-password');
-        res.json(user);
-    } catch (err) {
-        res.status(401).json({ message: 'Invalid token' });
-    }
-});
-
-module.exports = router;
+module.exports = router; // Pastikan router diekspor
