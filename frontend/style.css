@@ -9,15 +9,50 @@
             /* Coklat muda */
         }
 
-        :root {
-            --primary: #5F6F52;
-            /* Hijau tua */
-            --secondary: #A9B388;
-            /* Hijau muda */
-            --background: #FEFAE0;
-            /* Krem */
-            --accent: #B99470;
-            /* Coklat muda */
+        body {
+            background-color: var(--background);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: var(--primary);
+            padding: 1rem;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: var(--background) !important;
+        }
+
+        .nav-link:hover {
+            color: var(--accent) !important;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            margin-right: 1rem;
+            /* Jarak antar item menu */
+            font-weight: bold;
+        }
+
+        #auth-section {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        #auth-section .btn {
+            padding: 0.4rem 0.8rem;
+            /* Ukuran tombol lebih kecil */
+            font-size: 0.9rem;
         }
 
         /* Override Bootstrap Colors */
@@ -43,25 +78,6 @@
 
 
 
-        body {
-            background-color: var(--background);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .navbar {
-            background-color: var(--primary);
-        }
-
-        .navbar-brand,
-        .nav-link {
-            color: var(--background) !important;
-        }
-
-        .nav-link:hover {
-            color: var(--accent) !important;
-        }
 
         .btn-primary {
             background-color: var(--accent);
