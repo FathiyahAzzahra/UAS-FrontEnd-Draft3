@@ -1,0 +1,67 @@
+body {
+    background: linear-gradient(to bottom, var(--secondary) 10%, var(--background) 60%);
+}
+
+#carouselExample {
+
+    padding-top: 75px;
+    /* Sesuaikan dengan tinggi navbar Anda */
+}
+
+.carousel-inner img {
+    width: 100%;
+    /* Membuat gambar mengambil lebar penuh */
+    height: 500px;
+    /* Menentukan tinggi gambar yang konsisten */
+    object-fit: cover;
+    /* Menjaga gambar tetap proporsional dan terpotong sesuai kontainer */
+}
+
+.card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.accordion-button {
+    background-color: var(--secondary);
+    color: var(--background);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--accent);
+    color: var(--background);
+}
+
+/* Banner Styling */
+.banner {
+    background-color: var(--secondary);
+    border-radius: 15px;
+    padding: 40px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 40px 0;
+}
+
+.banner h3 {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.banner p {
+    color: var(--background);
+    font-size: 1.1rem;
+}
+
+.banner .btn-cta {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: var(--background);
+}
+
+.banner .btn-cta:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--background);
+}

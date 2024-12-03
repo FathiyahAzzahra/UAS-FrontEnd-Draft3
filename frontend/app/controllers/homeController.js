@@ -1,10 +1,10 @@
 var app = angular.module('myApp', []);
 app.controller('MainController', function ($scope) {
     $scope.features = [
-        { title: "Meditation & Relaxation", description: "Find peace with guided meditations and relaxation techniques.", link: "#!/meditation" },
+        { title: "Self-Care", description: "Find peace with guided meditations and relaxation techniques.", link: "#!/meditation" },
         { title: "Daily Wellness", description: "Build healthy habits with our calendar and progress tools.", link: "#!/dailyWellness" },
         { title: "Community", description: "Connect with others on the same journey.", link: "#!/community" },
-        { title: "Resources", description: "Access tools and articles for further support.", link: "#!/resources" }
+        { title: "Reflection", description: "Creativity through art serves as a path to healing and self-reflection in mental health.", link: "#!/resources" }
     ];
 
     $scope.faqs = [
@@ -37,3 +37,9 @@ function logout() {
     localStorage.removeItem('username'); // Hapus username
     location.reload(); // Refresh halaman
 }
+
+const carouselElement = document.querySelector('#carouselExample');
+const carousel = new bootstrap.Carousel(carouselElement, {
+    interval: 3000, // 3 seconds
+    pause: 'hover' // Pause when hovered
+});
