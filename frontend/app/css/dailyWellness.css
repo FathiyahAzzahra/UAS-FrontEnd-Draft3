@@ -1,0 +1,126 @@
+:root {
+    --primary: #5F6F52;
+    /* Hijau tua */
+    --secondary: #A9B388;
+    /* Hijau muda */
+    --background: #FEFAE0;
+    /* Krem */
+    --accent: #B99470;
+    /* Coklat muda */
+}
+
+/* Umum */
+body {
+    background-color: var(--background);
+    font-family: 'Roboto', sans-serif;
+    color: var(--primary);
+    margin: 0;
+    padding: 0;
+}
+
+/* Heading */
+h1,
+h2 {
+    color: var(--primary);
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+/* List Group */
+.list-group-item {
+    background-color: var(--background);
+    color: var(--primary);
+    border: 1px solid var(--secondary);
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+
+.list-group-item .badge {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+}
+
+/* Buttons */
+.btn {
+    color: #fff;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    color: #fff;
+}
+
+.btn-success {
+    background-color: var(--secondary);
+}
+
+.btn-success:hover {
+    background-color: var(--primary);
+}
+
+.btn-danger {
+    background-color: var(--accent);
+}
+
+.btn-danger:hover {
+    background-color: #914d30;
+    /* Warna coklat lebih gelap */
+}
+
+.btn-warning {
+    background-color: #FFC107;
+    /* Warna kuning default Bootstrap */
+    color: var(--primary);
+}
+
+.btn-warning:hover {
+    background-color: #E0A800;
+    /* Warna kuning lebih gelap */
+}
+
+/* Form Inputs */
+input[type="text"],
+input[type="date"],
+select.form-select {
+    background-color: #fff;
+    border: 1px solid var(--secondary);
+    color: var(--primary);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 5px var(--secondary);
+}
+
+/* Modal Styling */
+.modal-header {
+    background-color: var(--secondary);
+    color: #fff;
+}
+
+.modal-content {
+    border-radius: 12px;
+    background-color: var(--background);
+}
+
+.modal-title {
+    color: var(--primary);
+}

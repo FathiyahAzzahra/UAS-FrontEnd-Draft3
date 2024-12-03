@@ -17,6 +17,18 @@ app.config(function ($routeProvider) {
             controller: 'RegisterController',
         })
 
+        .when('/dailyWellness', {
+            templateUrl: 'app/views/dailyWellness.html',
+            controller: 'DailyWellnessController',
+            resolve: {
+                auth: function ($location, AuthService) {
+                    if (!AuthService.isLoggedIn()) {
+                        $location.path('/login'); // Redirect to login if not authenticated
+                    }
+                }
+            }
+        })
+
         .otherwise({
             redirectTo: '/',
         });
