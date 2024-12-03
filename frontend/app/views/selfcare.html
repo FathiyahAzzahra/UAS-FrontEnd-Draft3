@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="peacefulPathApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peaceful Path - Selfcare</title>
+    <link rel="stylesheet" href="../css/selfcare.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body ng-controller="SelfcareController">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Peaceful Path</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../views/selfcare.html">Meditation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!/dailyWellness">Daily Wellness</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!/community">Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!/resources">Resources</a></li>
+                </ul>
+                <a href="./app/views/register.html" class="btn rounded-pill btn-primary ms-3 px-4 py-2">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="header-bar mt-5">
+        <i class="fas fa-user"></i>
+        <h2>Selfcare</h2>
+        <div class="header-icons">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-ellipsis-v"></i>
+        </div>
+    </div>
+
+    <!-- Image Carousel -->
+    <div id="selfcareCarousel" class="carousel slide mt-5 pt-4" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../../assets/meditasi-sunset.jpg" class="d-block w-100" alt="Yoga Image 1">
+            </div>
+            <div class="carousel-item">
+                <img src="../../assets/yoga.jpg" class="d-block w-100" alt="Yoga Image 2">
+            </div>
+            <div class="carousel-item">
+                <img src="../../assets/Breathing.jpg" class="d-block w-100" alt="Yoga Image 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#selfcareCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#selfcareCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <!-- Buttons -->
+        <div class="category-buttons">
+            <button class="category-btn active" ng-click="loadMainOptions()">Sound Meditation</button>
+            <button class="category-btn" ng-click="filterContent('video')">Meditation Videos</button>
+        </div>
+
+        <!-- Main Options -->
+        <div ng-if="mainOptions.length > 0" class="row g-3 mt-4">
+            <div class="col-md-6" ng-repeat="option in mainOptions">
+                <div class="d-flex align-items-center bg-dark text-white p-3 rounded shadow-sm">
+                    <div class="flex-grow-1">
+                        <h6 class="m-0">{{ option.title }}</h6>
+                    </div>
+                    <button class="btn btn-success btn-circle" ng-click="loadContent(option.type)">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Selected Content -->
+        <div ng-if="selectedContent.length > 0" class="row g-3 mt-4">
+            <div class="col-md-6" ng-repeat="content in selectedContent">
+                <div class="d-flex align-items-center bg-dark text-white p-3 rounded shadow-sm"
+                    ng-click="setContentData(content); openModal(content)" data-bs-toggle="modal"
+                    data-bs-target="#contentModal">
+                    <div class="me-3">
+                        <div class="d-flex justify-content-center align-items-center bg-primary rounded-circle"
+                            style="width: 50px; height: 50px;">
+                            <i class="{{ content.icon }} fa-lg text-white"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h6 class="m-0">{{ content.title }}</h6>
+                        <p class="m-0">{{ content.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="contentModal" tabindex="-1" aria-labelledby="contentModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl custom-modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="contentModalLabel">{{ modalContent.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body align-items-center justify-content-center">
+                        <div class="row justify-content-center">
+                            <!-- Baris pertama untuk sound 1 dan sound 2 -->
+                            <div class="col-6 text-center p-3 sound-card"
+                                ng-repeat="sound in modalContent.sounds track by $index" ng-if="$index < 2">
+                                <h6>{{ sound.title }}</h6>
+                                <p>Follow a guided meditation for inner peace.</p>
+                                <audio controls>
+                                    <source src="{{ sound.audioUrl }}" type="audio/mp3">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <!-- Baris kedua untuk sound terakhir -->
+                            <div class="col-6 text-center p-3 sound-card" ng-if="modalContent.sounds.length > 2">
+                                <h6>{{ modalContent.sounds[2].title }}</h6>
+                                <audio controls>
+                                    <source src="{{ modalContent.sounds[2].audioUrl }}" type="audio/mp3">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Empty State -->
+        <div ng-if="mainOptions.length === 0 && selectedContent.length === 0" class="text-center mt-5">
+            <p>No content available.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4">
+        <div class="container d-flex justify-content-between">
+            <div class="footer-description">
+                <h3>About Peaceful Path</h3>
+                <p>Peaceful Path is your sanctuary for mental wellness. We offer guided meditations, daily wellness
+                    tracking, and a supportive community.</p>
+            </div>
+            <div class="footer-social text-center">
+                <h3>Follow Us</h3>
+                <ul class="social-icons list-unstyled d-flex justify-content-center gap-3">
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="../controllers/selfcare.js"></script>
+</body>
+
+</html>
