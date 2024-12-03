@@ -16,6 +16,7 @@ app.config(function ($routeProvider) {
             templateUrl: 'app/views/register.html',
             controller: 'RegisterController',
         })
+
         .otherwise({
             redirectTo: '/',
         });

@@ -1,0 +1,72 @@
+.main {
+    padding-top: 75px;
+}
+
+
+body {
+    background: linear-gradient(to bottom, var(--background), var(--secondary));
+    font-family: Arial, sans-serif;
+}
+
+.banner {
+    background-image: url('../../assets/zara/banner-reflections.png');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    color: #FEFAE0;
+
+
+}
+
+.banner h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.card {
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #A9B388;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #502314;
+}
+
+.card-body {
+    background-color: #FEFAE0;
+    color: #502314;
+}
+
+.btn-cta {
+    background-color: #5F6F52;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-cta:hover {
+    background-color: #A9B388;
+}
+
+.resource-card {
+    margin-bottom: 30px;
+}

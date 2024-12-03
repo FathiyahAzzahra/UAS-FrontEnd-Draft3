@@ -11,10 +11,12 @@
 
         body {
             background-color: var(--background);
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
+            font-family: 'Poppins', sans-serif !important;
+            /* min-height: 100vh; */
             display: flex;
             flex-direction: column;
+            margin: 0;
+            padding: 0;
         }
 
         /* Navbar Styling */
@@ -99,23 +101,6 @@
             border-color: var(--secondary);
         }
 
-        .card {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-        }
-
-        .accordion-button {
-            background-color: var(--secondary);
-            color: var(--background);
-        }
-
-        .accordion-button:not(.collapsed) {
-            background-color: var(--accent);
-            color: var(--background);
-        }
 
         .social-icons a {
             color: var(--background);
@@ -125,41 +110,6 @@
             color: var(--accent);
         }
 
-        /* Banner Styling */
-        .banner {
-            background-color: var(--secondary);
-            border-radius: 15px;
-            padding: 40px 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 40px 0;
-        }
-
-        .banner h3 {
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .banner p {
-            color: var(--background);
-            font-size: 1.1rem;
-        }
-
-        .banner .btn-cta {
-            background-color: var(--accent);
-            border-color: var(--accent);
-            color: var(--background);
-        }
-
-        .banner .btn-cta:hover {
-            background-color: var(--primary);
-            border-color: var(--primary);
-            color: var(--background);
-        }
-
-        /* Footer Styling Minimal */
-        footer {
-            padding: 40px 0;
-        }
 
         .social-icons a {
             font-size: 1.5rem;
