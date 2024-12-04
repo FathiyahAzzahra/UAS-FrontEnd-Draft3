@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Jika sudah login, tampilkan username dan tombol logout
         authSection.innerHTML = `
                     <button class="btn btn-light me-3" onclick="logout()">Logout</button>    
-                    <span class="text-white ms-2">Hi, ${username}</span>
+                    <a href="./app/views/profile.html" class="text-white ms-2" style="text-decoration: none;">Hi, ${username}</a>
                     `;
     } else {
         // Jika belum login, tampilkan tombol login

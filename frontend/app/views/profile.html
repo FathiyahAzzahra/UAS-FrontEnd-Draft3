@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Kombinasi warna sesuai permintaan */
+        :root {
+            --primary: #5F6F52;
+            /* Hijau tua */
+            --secondary: #A9B388;
+            /* Hijau muda */
+            --background: #FEFAE0;
+            /* Krem */
+            --accent: #B99470;
+            /* Coklat muda */
+        }
+
+        body {
+            background: linear-gradient(to bottom, var(--secondary), var(--background));
+            font-family: 'Arial', sans-serif;
+            min-height: 1000px;
+        }
+
+        .profile-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control,
+        .btn {
+            border-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-danger {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .btn-danger:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+        }
+
+        h2 {
+            color: var(--primary);
+        }
+
+        label {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-5 profile-container" ng-controller="ProfileController">
+        <h2 class="text-center">Profile</h2>
+        <div class="text-center mb-4">
+            <img ng-src="{{user.profilePicture}}" alt="Profile Picture" class="profile-picture" />
+        </div>
+
+        <form ng-submit="updateProfile()">
+            <!-- Username -->
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" ng-model="user.username" required readonly>
+            </div>
+
+
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" id="fullName" ng-model="user.fullName">
+            </div>
+
+            <div class="form-group">
+                <label for="pronouns">Pronouns</label>
+                <input type="text" class="form-control" id="pronouns" ng-model="user.pronouns">
+            </div>
+
+            <div class="form-group">
+                <label for="bio">Bio</label>
+                <textarea class="form-control" id="bio" ng-model="user.bio"
+                    ng-class="{'is-invalid': form.bio.$invalid && form.bio.$touched}" required></textarea>
+                <div class="invalid-feedback" ng-if="form.bio.$invalid && form.bio.$touched">
+                    Bio harus diisi.
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="profilePicture">Profile Picture URL</label>
+                <input type="text" class="form-control" id="profilePicture" ng-model="user.profilePicture">
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </form>
+
+        <hr>
+
+        <div class="text-center">
+            <button class="btn btn-danger mt-3" ng-click="deleteProfile()">Delete Account</button>
+        </div>
+
+        <div class="alert alert-success" ng-show="message"
+            ng-class="{'alert-success': success, 'alert-danger': !success}">
+            {{ message }}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+
+
+
+        app.controller('ProfileController', function ($scope, $window, $http) {
+            $scope.user = {
+                username: '',
+                fullName: '',
+                pronouns: '',
+                bio: '',
+                profilePicture: ''
+            };
+
+            // Fungsi untuk mengambil data profil
+            function getProfileData() {
+                const token = $window.localStorage.getItem('token');
+                if (!token) {
+                    $window.location.href = '/login'; // Redirect jika tidak ada token
+                    return;
+                }
+
+                $http.get('/api/data/profile', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                })
+                    .then(function (response) {
+                        console.log(response.data);  // Debugging response
+                        $scope.user = response.data;
+                    })
+                    .catch(function (error) {
+                        console.error(error); // Debugging error
+                        if (error.status === 401) {
+                            $window.location.href = '/login'; // Redirect ke login jika token tidak valid
+                        } else {
+                            $scope.message = 'Error fetching profile data: ' + (error.data ? error.data.message : error.message);
+                            $scope.success = false;
+                        }
+                    });
+            }
+
+            // Fungsi untuk memperbarui profil
+            $scope.updateProfile = function () {
+                const token = $window.localStorage.getItem('token');
+                if (!token) {
+                    $window.location.href = '/login'; // Redirect jika tidak ada token
+                    return;
+                }
+
+                $http.put('/api/data/profile', $scope.user, {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                })
+                    .then(function (response) {
+                        $scope.message = 'Profile updated successfully';
+                        $scope.success = true;
+                    })
+                    .catch(function (error) {
+                        $scope.message = 'Error updating profile: ' + (error.data ? error.data.message : error.message);
+                        $scope.success = false;
+                    });
+            };
+
+
+            // Delete profile
+            $scope.deleteProfile = function () {
+                if (confirm('Are you sure you want to delete your account?')) {
+                    const token = $window.localStorage.getItem('token');
+                    if (!token) {
+                        $window.location.href = '/login'; // Redirect if no token
+                        return;
+                    }
+
+                    $http.delete('/api/data/profile', {
+                        headers: { 'Authorization': 'Bearer ' + token }
+                    })
+                        .then(function (response) {
+                            $scope.message = 'Your account has been deleted';
+                            $scope.success = true;
+                            $window.localStorage.removeItem('token');
+                            setTimeout(function () {
+                                window.location.href = '/login'; // Redirect after account deletion
+                            }, 2000);
+                        })
+                        .catch(function (error) {
+                            $scope.message = 'Error deleting account: ' + (error.data ? error.data.message : error.message);
+                            $scope.success = false;
+                        });
+                }
+            };
+        });
+
+    </script>
+
+</body>
+
+</html>
