@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
+    <link rel="stylesheet" href="../../style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         /* Kombinasi warna sesuai permintaan */
@@ -85,62 +86,141 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: var(--primary);">
+        <div class="container d-flex justify-content-between align-items-center">
+            <!-- Brand -->
+            <a class="navbar-brand text-white" href="../../index.html">Peaceful Path</a>
 
-    <div class="container mt-5 profile-container" ng-controller="ProfileController">
-        <h2 class="text-center">Profile</h2>
-        <div class="text-center mb-4">
-            <img ng-src="{{user.profilePicture}}" alt="Profile Picture" class="profile-picture" />
+            <!-- Menu Navigasi -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="./selfcare.html">Self-Care</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="./dailyWellness.html">Daily Wellness</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#!/community">Community</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="./reflection.html">Reflection</a></li>
+                </ul>
+            </div>
+
+            <!-- Auth Section -->
+            <div id="auth-section" class="d-flex align-items-center">
+                <!-- Konten ini akan diganti oleh JavaScript -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="main p-5">
+        <div class="container mt-5 profile-container" ng-controller="ProfileController">
+            <h2 class="text-center">Profile</h2>
+            <div class="text-center mb-4">
+                <img ng-src="{{user.profilePicture}}" alt="Profile Picture" class="profile-picture" />
+            </div>
+
+            <form ng-submit="updateProfile()">
+                <!-- Username -->
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" ng-model="user.username" required readonly>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" ng-model="user.fullName">
+                </div>
+
+                <div class="form-group">
+                    <label for="pronouns">Pronouns</label>
+                    <input type="text" class="form-control" id="pronouns" ng-model="user.pronouns">
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">Bio</label>
+                    <textarea class="form-control" id="bio" ng-model="user.bio"
+                        ng-class="{'is-invalid': form.bio.$invalid && form.bio.$touched}"></textarea>
+                    <div class="invalid-feedback" ng-if="form.bio.$invalid && form.bio.$touched">
+                        Bio harus diisi.
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="profilePicture">Profile Picture URL</label>
+                    <input type="text" class="form-control" id="profilePicture" ng-model="user.profilePicture">
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+
+            <hr>
+
+            <div class="text-center">
+                <button class="btn btn-danger mt-3" ng-click="deleteProfile()">Delete Account</button>
+            </div>
+
+            <div class="alert alert-success" ng-show="message"
+                ng-class="{'alert-success': success, 'alert-danger': !success}">
+                {{ message }}
+            </div>
         </div>
 
-        <form ng-submit="updateProfile()">
-            <!-- Username -->
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" ng-model="user.username" required readonly>
-            </div>
+
+    </div>
+
+    <footer>
+
+        <!-- Footer Section -->
 
 
-            <div class="form-group">
-                <label for="fullName">Full Name</label>
-                <input type="text" class="form-control" id="fullName" ng-model="user.fullName">
-            </div>
+        <div class="container pt-5 ">
+            <div class="row justify-content-between">
+                <!-- Footer Description -->
+                <div class="col-md-6  text-center">
+                    <h3 class="mb-3 fw-bold" style="color: var(--primary);">About Peaceful Path</h3>
+                    <p class="fw-bold" style="color: var(--background);">Peaceful Path is your sanctuary for mental
+                        wellness. We offer
+                        guided meditations, daily wellness tracking, and a supportive community to help you find
+                        tranquility.</p>
+                </div>
 
-            <div class="form-group">
-                <label for="pronouns">Pronouns</label>
-                <input type="text" class="form-control" id="pronouns" ng-model="user.pronouns">
-            </div>
-
-            <div class="form-group">
-                <label for="bio">Bio</label>
-                <textarea class="form-control" id="bio" ng-model="user.bio"
-                    ng-class="{'is-invalid': form.bio.$invalid && form.bio.$touched}" required></textarea>
-                <div class="invalid-feedback" ng-if="form.bio.$invalid && form.bio.$touched">
-                    Bio harus diisi.
+                <!-- Footer Social Media Links -->
+                <div class="col-md-6 mb-4 text-center">
+                    <h3 class="fw-bold mb-3" style="color: var(--primary);">Follow Us</h3>
+                    <p class="fw-bold" style="color: var(--background);">Stay connected with us on social media for the
+                        latest updates,
+                        tips, and community support.</p>
+                    <ul class="social-icons list-unstyled d-flex justify-content-center gap-5">
+                        <li><a href="https://www.facebook.com/" aria-label="Facebook"
+                                class="text-decoration-none me-3"><i class="fab fa-facebook-f"
+                                    style="color: var(--background);"></i></a></li>
+                        <li><a href="https://x.com/i/flow/login" aria-label="Twitter"
+                                class="text-decoration-none me-3"><i class="fab fa-twitter"
+                                    style="color: var(--background);"></i></a></li>
+                        <li><a href="https://www.instagram.com/?hl=en" aria-label="Instagram"
+                                class="text-decoration-none me-3"><i class="fab fa-instagram"
+                                    style="color: var(--background);"></i></a></li>
+                        <li><a href="https://www.youtube.com/" aria-label="YouTube" class="text-decoration-none"><i
+                                    class="fab fa-youtube" style="color: var(--background);"></i></a></li>
+                    </ul>
                 </div>
             </div>
-
-
-            <div class="form-group">
-                <label for="profilePicture">Profile Picture URL</label>
-                <input type="text" class="form-control" id="profilePicture" ng-model="user.profilePicture">
-            </div>
-
-            <div class="text-center mt-4">
-                <button type="submit" class="btn btn-primary">Save Changes</button>
-            </div>
-        </form>
-
-        <hr>
-
-        <div class="text-center">
-            <button class="btn btn-danger mt-3" ng-click="deleteProfile()">Delete Account</button>
         </div>
 
-        <div class="alert alert-success" ng-show="message"
-            ng-class="{'alert-success': success, 'alert-danger': !success}">
-            {{ message }}
+
+
+        <!-- Footer Copyright Section -->
+        <div class="footer-copyright text-center py-3 " style="background-color: var(--primary);">
+            <p class="mb-0 text-white fw-bold">&copy; 2024 Peaceful Path. Your journey to peace begins here.</p>
         </div>
-    </div>
+
+    </footer>
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -159,7 +239,7 @@
                 profilePicture: ''
             };
 
-            // Fungsi untuk mengambil data profil
+            // Fungsi untuk mengambil data profil dari API
             function getProfileData() {
                 const token = $window.localStorage.getItem('token');
                 if (!token) {
@@ -171,19 +251,22 @@
                     headers: { 'Authorization': 'Bearer ' + token }
                 })
                     .then(function (response) {
-                        console.log(response.data);  // Debugging response
-                        $scope.user = response.data;
+                        console.log('Profil berhasil diambil:', response.data); // Debugging
+                        $scope.user = response.data; // Masukkan data ke dalam $scope.user
                     })
                     .catch(function (error) {
-                        console.error(error); // Debugging error
+                        console.error('Error saat mengambil profil:', error); // Debugging
                         if (error.status === 401) {
-                            $window.location.href = '/login'; // Redirect ke login jika token tidak valid
+                            $window.location.href = '/login'; // Redirect ke login jika tidak authorized
                         } else {
                             $scope.message = 'Error fetching profile data: ' + (error.data ? error.data.message : error.message);
                             $scope.success = false;
                         }
                     });
             }
+
+            // Panggil fungsi untuk mengambil data profil saat controller diinisialisasi
+            getProfileData();
 
             // Fungsi untuk memperbarui profil
             $scope.updateProfile = function () {
@@ -208,11 +291,12 @@
 
 
             // Delete profile
+            // Fungsi untuk menghapus profil
             $scope.deleteProfile = function () {
                 if (confirm('Are you sure you want to delete your account?')) {
                     const token = $window.localStorage.getItem('token');
                     if (!token) {
-                        $window.location.href = '/login'; // Redirect if no token
+                        $window.location.href = '/login'; // Redirect jika tidak ada token
                         return;
                     }
 
@@ -220,11 +304,17 @@
                         headers: { 'Authorization': 'Bearer ' + token }
                     })
                         .then(function (response) {
+                            // Hapus token dan username dari localStorage
+                            $window.localStorage.removeItem('token');
+                            $window.localStorage.removeItem('username');
+
+                            // Tampilkan pesan sukses
                             $scope.message = 'Your account has been deleted';
                             $scope.success = true;
-                            $window.localStorage.removeItem('token');
+
+                            // Redirect ke halaman login setelah beberapa saat
                             setTimeout(function () {
-                                window.location.href = '/login'; // Redirect after account deletion
+                                $window.location.href = '/login'; // Redirect setelah akun dihapus
                             }, 2000);
                         })
                         .catch(function (error) {
@@ -233,6 +323,7 @@
                         });
                 }
             };
+
         });
 
     </script>
