@@ -1,13 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const dataRoutes = require('./routes/dataRoutes'); // Mengimpor dataRoutes
+const User = require('./models/dataModel');
+const cors = require('cors');
 const path = require('path');
-const dataRoutes = require('./routes/dataRoutes');
 const dailyWellnessRoutes = require('./routes/dailyWellnessRoutes');
 // const authRoutes = require('./routes/authRoutes'); // Menambahkan route untuk autentikasi
 
+
+// Setup Express app
 const app = express();
 const PORT = process.env.PORT || 3000; // Menggunakan port yang dapat diubah lewat environment variables
+
+
+// Middleware untuk CORS
+app.use(cors()); // Mengaktifkan CORS untuk semua domain
+
 
 // Middleware
 app.use(bodyParser.json()); // Menggunakan body parser untuk JSON
@@ -31,9 +40,11 @@ mongoose.connect('mongodb://127.0.0.1:27017/angularjs_db', {
 });
 
 // Serve frontend assets
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html')); // Serve React/Vue/Angular frontend
 });
+
 
 // Handle registration route
 app.get('/register', (req, res) => {
