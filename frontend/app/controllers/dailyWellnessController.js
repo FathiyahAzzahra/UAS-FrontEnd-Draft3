@@ -148,4 +148,87 @@ app.controller('DailyWellnessController', function($scope, DailyWellnessService)
     }
   };
 
+  $scope.openEditAffirmationModal = function (affirmation) {
+  // Set the affirmation to edit
+  $scope.editAffirmation = angular.copy(affirmation);
+
+  // Show the modal
+  const modal = new bootstrap.Modal(document.getElementById('editAffirmationModal'));
+  modal.show();
+};
+
+
+$scope.openEditMoodModal = function (mood) {
+  // Set the affirmation to edit
+  $scope.editMood = angular.copy(mood);
+
+  // Show the modal
+  const modal = new bootstrap.Modal(document.getElementById('editMoodModal'));
+  modal.show();
+};
+
+$scope.saveEditedMood = function () {
+  if (!$scope.editMood.mood || !$scope.editMood.date) {
+    alert("Please provide both mood and date.");
+    return;
+  }
+
+  setLoadingState(true);
+
+  // Panggil service untuk update mood
+  DailyWellnessService.updateMood($scope.editMood._id, $scope.editMood).then(function (response) {
+    const updatedMood = response.data;
+
+    // Update mood dalam array
+    const index = $scope.data.moods.findIndex(mood => mood._id === updatedMood._id);
+    if (index !== -1) {
+      $scope.data.moods[index] = updatedMood;
+    }
+
+    setLoadingState(false);
+    // Tutup modal setelah sukses
+    const modal = bootstrap.Modal.getInstance(document.getElementById('editMoodModal'));
+    modal.hide();
+  }).catch(function (error) {
+    handleError(error, "Failed to update mood");
+    setLoadingState(false); // Pastikan loading state direset
+  });
+};
+
+$scope.saveEditedAffirmation = function () {
+  if (!$scope.editAffirmation.text) {
+    alert("Please provide the affirmation text.");
+    return;
+  }
+
+  const affirmationId = $scope.editAffirmation._id; // Ambil ID dari objek
+  const updatedAffirmation = {
+    text: $scope.editAffirmation.text, // Hanya teks yang diedit
+    favorite: $scope.editAffirmation.favorite, // Tambahkan jika diperlukan
+  };
+
+  setLoadingState(true);
+
+  DailyWellnessService.updateAffirmation(affirmationId, updatedAffirmation)
+    .then(function (response) {
+      const updatedAffirmation = response.data;
+
+      // Cari dan perbarui affirmation di array data
+      const index = $scope.data.affirmations.findIndex(a => a._id === updatedAffirmation._id);
+      if (index !== -1) {
+        $scope.data.affirmations[index] = updatedAffirmation;
+      }
+
+      setLoadingState(false);
+
+      // Sembunyikan modal setelah berhasil disimpan
+      const modal = bootstrap.Modal.getInstance(document.getElementById('editAffirmationModal'));
+      modal.hide();
+    })
+    .catch(function (error) {
+      handleError(error, "Failed to update affirmation");
+      setLoadingState(false); // Pastikan loading state direset
+    });
+};
+
 });

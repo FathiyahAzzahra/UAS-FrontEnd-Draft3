@@ -149,4 +149,75 @@ router.delete('/affirmations/:id', async (req, res, next) => {
   }
 });
 
+// Edit a plan
+router.put('/plans/:id', async (req, res, next) => {
+  const { id } = req.params;
+  const { title, date } = req.body;
+
+  try {
+    const data = await DailyWellness.findOne();
+    if (!data) return res.status(404).json({ error: 'Data not found' });
+
+    const plan = data.plans.id(id);
+    if (plan) {
+      if (title) plan.title = title;
+      if (date) plan.date = date;
+      await data.save();
+      res.json(plan);
+    } else {
+      res.status(404).json({ error: 'Plan not found' });
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Edit a mood
+router.put('/moods/:id', async (req, res, next) => {
+  const { id } = req.params;
+  const { date, mood } = req.body;
+
+  try {
+    const data = await DailyWellness.findOne();
+    if (!data) return res.status(404).json({ error: 'Data not found' });
+
+    const moodEntry = data.moods.id(id);
+    if (moodEntry) {
+      if (date) moodEntry.date = date;
+      if (mood) moodEntry.mood = mood;
+      await data.save();
+      res.json(moodEntry);
+    } else {
+      res.status(404).json({ error: 'Mood not found' });
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Edit an affirmation
+router.put('/affirmations/:id', async (req, res, next) => {
+  const { id } = req.params; // Ambil ID dari URL
+  const updatedData = req.body; // Ambil data yang dikirim di body
+
+  try {
+    const data = await DailyWellness.findOne();
+    if (!data) return res.status(404).json({ error: 'Data not found' });
+
+    const affirmation = data.affirmations.id(id);
+    if (affirmation) {
+      affirmation.text = updatedData.text || affirmation.text; // Update teks
+      affirmation.favorite = updatedData.favorite ?? affirmation.favorite; // Update favorite
+      await data.save();
+
+      res.json(affirmation);
+    } else {
+      res.status(404).json({ error: 'Affirmation not found' });
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+
 module.exports = router;

@@ -77,6 +77,16 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Something went wrong!' });
 });
 
+app.put('/api/moods/:id', (req, res) => {
+    const moodId = req.params.id;
+    const updatedMood = req.body;
+
+    // Logika untuk memperbarui mood di database
+    Mood.findByIdAndUpdate(moodId, updatedMood, { new: true })
+        .then(updated => res.json(updated))
+        .catch(err => res.status(400).json({ error: err.message }));
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
