@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="selfcareApp">
 
 <head>
     <meta charset="UTF-8">
@@ -13,20 +13,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
 
     <link rel="stylesheet" href="../../style.css">
     <link rel="stylesheet" href="../css/selfcare.css">
+    <script src="../controllers/homeController.js"></script>
 </head>
 
-<body ng-controller="MainController">
+<body ng-controller="SelfcareController">
 
     <nav class="navbar navbar-expand-lg fixed-top" style="background-color: var(--primary);">
         <div class="container d-flex justify-content-between align-items-center">
             <!-- Brand -->
-            <a class="navbar-brand text-white" href="#">Peaceful Path</a>
+            <a class="navbar-brand text-white" href="../../index.html">Peaceful Path</a>
     
             <!-- Menu Navigasi -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -35,17 +37,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link text-white" href="./app/views/selfcare.html">Selfcare</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#!/dailyWellness">Daily Wellness</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Selfcare</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="./dailyWellness.html">Daily Wellness</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#!/community">Community</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#!/resources">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="./reflection.html">Reflection</a></li>
                 </ul>
             </div>
     
-            <!-- Auth Section -->
-            <div id="auth-section" class="d-flex align-items-center">
-                <!-- Konten ini akan diganti oleh JavaScript -->
-            </div>
         </div>
     </nav>
 
@@ -58,13 +56,13 @@
         <div id="selfcareCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
             <div class="carousel-inner rounded shadow-lg">
                 <div class="carousel-item active">
-                    <img src="../../assets/zara/meditasi-sunset.jpg" class="d-block w-100" alt="Yoga Image 1">
+                    <img src="../../assets/dina/Breathing.jpg" class="d-block w-100" alt="Yoga Image 1">
                 </div>
                 <div class="carousel-item">
-                    <img src="../../assets/yoga.jpg" class="d-block w-100" alt="Yoga Image 2">
+                    <img src="../../assets/dina/breathing2.jpg" class="d-block w-100" alt="Yoga Image 2">
                 </div>
                 <div class="carousel-item">
-                    <img src="../../assets/Breathing.jpg" class="d-block w-100" alt="Yoga Image 3">
+                    <img src="../../assets/dina/breathing3.jpg" class="d-block w-100" alt="Yoga Image 3">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#selfcareCarousel" data-bs-slide="prev">
@@ -80,41 +78,145 @@
     
     
     <!-- Meditation & Relaxation Section -->
-    <section id="meditation">
-        <h2>Meditation & Relaxation</h2>
-        <p>Find tranquility with meditation and relaxation techniques.</p>
-        
-        <div class="scroll-buttons">
-            <button id="scroll-left">←</button>
-            <button id="scroll-right">→</button>
-        </div>
-
-        <div class="meditation-wrapper">
-            <div class="meditation-item" data-type="audio" data-url="../assets/dina/Relaksasi 5 menit.mp3">
-                <h3><i class="fas fa-volume-up"></i> 5-Minute Meditation</h3>
-                <audio class="meditation-audio" controls>
-                    <source src="../assets/dina/Relaksasi 5 menit.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-            <div class="meditation-item" data-type="audio" data-url="../assets/dina/Relaksasi 10 menit.mp3">
-                <h3><i class="fas fa-volume-up"></i> 10-Minute Meditation</h3>
-                <audio class="meditation-audio" controls>
-                    <source src="../assets/dina/Relaksasi 10 menit.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-            <div class="meditation-item" data-type="audio" data-url="../assets/dina/Relaksasi 15 menit.mp3">
-                <h3><i class="fas fa-volume-up"></i> 15-Minute Meditation</h3>
-                <audio class="meditation-audio" controls>
-                    <source src="../assets/dina/Relaksasi 15 menit.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
+    <section id="meditation" class="mt-5">
+        <div class="container">
+            <h2 class="text-center">Meditation & Relaxation</h2>
+            <p class="text-center">Find tranquility with meditation and relaxation techniques.</p>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="meditation-card d-flex align-items-center">
+                        <i class="fas fa-volume-up meditation-icon"></i>
+                        <div class="meditation-content ms-3">
+                            <h5 class="meditation-title">5-Minute Meditation</h5>
+                            <audio class="meditation-audio" controls>
+                                <source src="../../assets/dina/Relaksasi 5 menit.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="meditation-card d-flex align-items-center">
+                        <i class="fas fa-volume-up meditation-icon"></i>
+                        <div class="meditation-content ms-3">
+                            <h5 class="meditation-title">10-Minute Meditation</h5>
+                            <audio class="meditation-audio" controls>
+                                <source src="../../assets/dina/Relaksasi 10 menit.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="meditation-card d-flex align-items-center">
+                        <i class="fas fa-volume-up meditation-icon"></i>
+                        <div class="meditation-content ms-3">
+                            <h5 class="meditation-title">15-Minute Meditation</h5>
+                            <audio class="meditation-audio" controls>
+                                <source src="../../assets/dina/Relaksasi 15 menit.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     
-    <script src="./app/controllers/homeController.js"></script>
+    <section id="personal-sounds" class="mt-5">
+        <div class="container">
+            <h2 class="text-center">Your Personal Sounds</h2>
+            <p class="text-center">Store your favorite sounds to relax here, make it your safe space!</p>
+    
+            <!-- Sound List -->
+            <div ng-if="sounds.length > 0">
+                <div class="row g-4 mb-5 px-5">
+                    <div class="col-md-4" ng-repeat="sound in sounds track by $index">
+                        <div class="sound-card d-flex align-items-center">
+                            <i class="fas fa-music sound-icon"></i>
+                            <div class="sound-content ms-4">
+                                <h5 class="sound-title">{{sound.title}}</h5>
+                                <div class="sound-description">{{sound.description}}</div>
+                                <audio class="sound-audio" controls>
+                                    <source ng-src="{{sound.file}}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                                <div class="action-buttons mt-3 text-end">
+                                    <button class="btn" style="background-color: #FEFAE0;" ng-click="editSound(sound)">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="btn" style="background-color: #B99470;" ng-click="deleteSound(sound._id)">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="sounds.length == 0">
+                <p>No sounds available.</p> <!-- Pesan jika tidak ada data -->
+            </div>
+            
+            
+    
+            <!-- Upload New Sound Form -->
+            <form ng-submit="uploadSound()" class="upload-form">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Sound Title</label>
+                    <input type="text" id="title" class="form-control" ng-model="newSound.title" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea id="description" class="form-control" ng-model="newSound.description" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="file" class="form-label">Upload Sound</label>
+                    <input type="file" name="soundFile" id="file" class="form-control" file-model="newSound.file" accept="audio/*" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Upload Sound</button>
+            </form>
+        </div>
+    </section>
+    
+    <div class="modal fade" id="editSoundModal" tabindex="-1" aria-labelledby="editSoundModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editSoundModalLabel">Edit Sound</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form ng-submit="updateSound()">
+                        <div class="mb-3">
+                            <label for="edit-title" class="form-label">Sound Title</label>
+                            <input type="text" id="edit-title" class="form-control" ng-model="selectedSound.title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-description" class="form-label">Description</label>
+                            <textarea id="edit-description" class="form-control" ng-model="selectedSound.description" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-sound" class="form-label">Sound File</label>
+                            <audio class="form-control" controls>
+                                <source ng-src="{{selectedSound.file}}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Sound</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../controllers/homeController.js"></script>
 </body>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- AngularJS Script -->
+<script src="../controllers/selfcareController.js"></script>
 
 </html>

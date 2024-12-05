@@ -41,313 +41,126 @@
     display: none; /* Menghilangkan panah geser */
 }
 
-
+/* Color Palette */
 :root {
-    --cokelatMuda: #A9B388;
-    --cokelatMuda2: #FEFAE0;
-    --cokelatSedang: #5F6F52;
-    --cokelatTua: #422b0c;
-    --textColor1: #221c16;
-    --textColor2: #474543;
-    --white: #ffffff;
+    --primary-dark: #5F6F52;
+    --primary-light: #A9B388;
+    --secondary-light: #FEFAE0;
+    --accent: #B99470;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', 'Roboto', 'Open Sans', sans-serif;
-    background-color: var(--white);
-    color: var(--textColor1);
-    text-align: center;
-    line-height: 1.6;
-}
-
-section {
-    margin: 20px auto;
-    max-width: 1300px;
-    background-color: var(--white);
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-top: 200px;   
-}
-
-/* Countdown Timer */
-
-.countdown-container {
-    display: flex;              
-    justify-content: center;    
-    align-items: center;        
-    gap: 20px;                  
-    margin-bottom: 20px;    
-    flex-direction: column; 
-}
-
-#countdown {
-    background-color: var(--cokelatMuda);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin-bottom: 20px;
-    color: var(--textColor2);
-}
-
-.circle {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: var(--cokelatTua);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
-}
-
-#timer {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 10px;
-}
-
-@media (max-width: 500px) {
-    #timer {
-        width: 70vw; /* Mengurangi lebar untuk layar kecil */
-        height: 70vh; /* Mengurangi tinggi untuk layar kecil */
-    }
-
-    .input-container {
-        width: 80vw; 
-    }
-}
-
-@media (max-width: 350px) {
-    #timer {
-        width: 35vw; /* Mengurangi lebar untuk layar sangat kecil */
-        height: 35vw; /* Mengurangi tinggi untuk layar sangat kecil */
-    }
-
-    .input-container {
-        width: 40vw; 
-    }
-
-    #timeDisplay {
-        font-size: 1.5rem; /* Mengurangi ukuran font untuk layar kecil */
-    }
-}
-
-.input-container {
-    background-color: var(--cokelatMuda2);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 500px;
-    text-align: center;
-}
-
-.input-container label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.input-container input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid var(--cokelatSedang);
-    border-radius: 5px;
-    font-size: 16px;
-    color: var(--textColor2);
-}
-
-.input-container .button-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.input-container button {
-    background-color: var(--cokelatTua);
-    color: var(--white);
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    flex: 1;
-    margin: 0 5px;
-}
-
-.input-container button:hover {
-    background-color: var(--cokelatSedang);
-}
-
-.input-container button:active {
-    background-color: var(--cokelatTua);
-}
-
-#container {
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    margin: 20px; 
-}
-
-#circleProgress {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 10px solid var(--cokelatSedang);
-    box-shadow: 0 0 15px var(--cokelatTua);
-    clip-path: circle(50%);
-}
-
-#circleProgress:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: conic-gradient(var(--cokelatTua) 0deg, var(--cokelatTua) 0deg, var(--cokelatMuda) 0deg, var(--cokelatMuda) 360deg);
-    transition: background 0.1s linear;
-    clip-path: circle(50%);
-}
-
-#timeDisplay {
-    font-size: 32px;
-    color: var(--textColor2);
-    font-weight: bold;
-    z-index: 1;
-}
-
-button {
-    background-color: var(--cokelatTua);
-    color: var(--white);
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 5px;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.button-container {
-    display: flex;               
-    gap: 10px;                  
-    margin-top: 10px;           
-}
-
-button:hover {
-    background-color: var(--cokelatSedang);
-    transform: translateY(-2px);
-}
-
-#startButton,
-#resetButton {
-    background-color: var(--cokelatMuda);
-    color: var(--textColor2);
-    border: none;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-#startButton:hover,
-#resetButton:hover {
-    background-color: var(--cokelatSedang);
-}
 #meditation {
-    background-color: var(--cokelatMuda2);
-    padding: 20px;
-    text-align: center;
-    margin-bottom: 100px;
+    background-color: var(--secondary-light);
+    padding: 3rem 0;
+    border-radius: 8px;
 }
 
 #meditation h2 {
-    color: var(--textColor2);
-    font-size: 28px;
-    margin-bottom: 15px;
+    color: var(--primary-dark);
+    font-weight: 600;
 }
 
-/* New Wrapper for Horizontal Scrolling */
-.meditation-wrapper {
-    display: flex; /* Use flexbox layout */
-    overflow-x: auto; /* Enable horizontal scrolling */
-    padding: 10px 0; /* Add some padding */
-    gap: 20px; /* Add space between items */
-    scrollbar-width: thin; /* For Firefox */
+#meditation p {
+    color: var(--primary-light);
 }
 
-.meditation-wrapper::-webkit-scrollbar {
-    height: 8px; /* Height of scrollbar */
+.meditation-card {
+    background-color: var(--primary-light);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.meditation-wrapper::-webkit-scrollbar-thumb {
-    background-color: var(--cokelatSedang); /* Scrollbar color */
-    border-radius: 10px; /* Rounded scrollbar */
-}
-
-.meditation-item {
-    background-color: var(--cokelatMuda);
-    color: var(--textColor1);
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 10px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    min-width: 600px; /* Set a minimum width for each item */
-
-}
-
-.meditation-item:hover {
+.meditation-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.meditation-item h3 {
-    font-size: 1.2rem;
-    color: var(--cokelatTua);
-    margin: 0 0 10px;
+.meditation-icon {
+    font-size: 2rem;
+    color: var(--primary-dark);
+    flex-shrink: 0;
 }
 
-audio {
+.meditation-content {
+    flex: 1;
+}
+
+.meditation-title {
+    color: var(--primary-dark);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.meditation-audio {
     width: 100%;
-    border-radius: 5px;
-    margin-top: 10px;
+    height: 35px;
 }
 
-/* Scroll Buttons */
-.scroll-buttons {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
+
+
+/* PERSONAL SOUND */
+#personal-sounds {
+    background-color: var(--secondary-light);
+    padding: 3rem 0;
+    border-radius: 8px;
 }
 
-.scroll-buttons button {
-    background-color: var(--cokelatSedang);
-    border: none;
-    color: white;
-    padding: 10px;
-    margin: 0 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+#personal-sounds h2 {
+    color: var(--primary-dark);
+    font-weight: 600;
 }
 
-.scroll-buttons button:hover {
-    background-color: var(--cokelatTua);
+#personal-sounds p {
+    color: var(--primary-light);
+}
+
+.sound-card {
+    background-color: var(--primary-light);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sound-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sound-icon {
+    font-size: 2rem;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.sound-content {
+    flex: 1;
+}
+
+.sound-title {
+    color: var(--primary-dark);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.sound-description {
+    color: var(--primary-dark);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.sound-audio {
+    width: 100%;
+    height: 35px;
+}
+
+.upload-form {
+    background-color: var(--primary-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
