@@ -17,6 +17,7 @@ h2.mb-4.text-center {
     color: var(--primary);
     font-size: 2.5rem;
     font-weight: 600;
+    text-align: center;
 }
 
 /* Main Content */
@@ -31,27 +32,34 @@ h2.mb-4.text-center {
     border: 1px solid var(--secondary);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: scale(1.05);
+    /* Zoom In */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card-body {
     padding: 20px;
     color: var(--primary);
+    text-align: center;
+    /* Centering text */
 }
 
 .card-title {
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-size: 1.7rem;
+    /* Increased font size */
+    font-weight: 700;
+    /* Bolder font weight */
     color: var(--primary);
 }
 
 .card-text {
-    color: var(--secondary);
-    font-size: 1rem;
+    color: var(--accent);
+    font-size: 1.4rem;
+    /* Increased font size */
 }
 
 .card-img-top {
@@ -62,17 +70,33 @@ h2.mb-4.text-center {
 
 .card-img-top:hover {
     transform: scale(1.1);
+    /* Zoom In on hover */
 }
 
 /* Section Titles */
 h4,
 h5 {
     color: var(--primary);
+    text-align: center;
+    /* Centering section titles */
 }
 
 h4 {
     font-size: 1.75rem;
     margin-bottom: 20px;
+}
+
+/* Mindful Space & Welcome Text */
+.mindful-space,
+.welcome-peaceful-path {
+    font-family: 'Roboto', sans-serif;
+    /* Ensure the same font */
+    font-weight: 600;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    /* Set the same font size */
 }
 
 /* Style untuk Form Input di Cards */
@@ -153,6 +177,12 @@ ul.list-group-item .btn {
 
 .modal-title {
     font-size: 1.25rem;
+}
+
+/* Font-family untuk konten */
+body {
+    font-family: 'Roboto', sans-serif;
+    /* Atau 'Open Sans', sans-serif */
 }
 
 /* Responsive styling */
