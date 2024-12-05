@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="peacefulPathApp">
+
+<head>
+    <title>Mulai Diskusi - Peaceful Path</title>
+    <link rel="stylesheet" href="../css/diskusi.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="../controllers/diskusiController.js"></script>
+</head>
+
+<body ng-controller="DiskusiController as diskusiCtrl">
+    <div class="container">
+        <h2>Tambah Diskusi Baru</h2>
+
+        <form ng-submit="diskusiCtrl.submitDiscussion()">
+            <!-- Pilih Status Pertanyaan -->
+            <div class="form-group">
+                <label>Pilih Status Pertanyaan</label>
+                <div class="status-options">
+                    <label>
+                        <input type="radio" name="status" ng-model="diskusiCtrl.selectedStatus" value="Publik">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2464/2464562.png" alt="Publik">
+                        Publik
+                    </label>
+                    <label>
+                        <input type="radio" name="status" ng-model="diskusiCtrl.selectedStatus" value="Anonim">
+                        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Anonim">
+                        Anonim
+                    </label>
+                    <label>
+                        <input type="radio" name="status" ng-model="diskusiCtrl.selectedStatus" value="Privasi">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3221/3221845.png" alt="Privasi">
+                        Privasi
+                    </label>
+                </div>
+            </div>
+
+            <!-- Pilih Topik -->
+            <div class="form-group">
+                <label for="topic">Pilih Topik</label>
+                <select id="topic" ng-model="diskusiCtrl.selectedTopic"
+                    ng-options="topic for topic in diskusiCtrl.topics" required>
+                    <option value="">Cari dan pilih topik penyakit</option>
+                </select>
+            </div>
+
+            <!-- Judul -->
+            <div class="form-group">
+                <label for="title">Judul</label>
+                <input type="text" id="title" ng-model="diskusiCtrl.title" placeholder="Masukkan judul" required>
+            </div>
+
+            <!-- Detail Pertanyaan -->
+            <div class="form-group">
+                <label for="content">Detail Pertanyaan</label>
+                <textarea id="content" ng-model="diskusiCtrl.content" placeholder="Masukkan detail pertanyaan"
+                    required></textarea>
+            </div>
+
+            <button type="submit">Kirim Diskusi</button>
+        </form>
+    </div>
+</body>
+
+</html>

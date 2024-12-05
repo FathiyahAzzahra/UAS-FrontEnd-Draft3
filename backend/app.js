@@ -4,18 +4,24 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const dataRoutes = require('./routes/dataRoutes');
 const dailyWellnessRoutes = require('./routes/dailyWellnessRoutes');
+const discussionRoutes = require('./routes/discussionRoutes');
+const cors = require('cors');
 // const authRoutes = require('./routes/authRoutes'); // Menambahkan route untuk autentikasi
 
 const app = express();
 const PORT = process.env.PORT || 3000; // Menggunakan port yang dapat diubah lewat environment variables
 
 // Middleware
+app.use(cors({
+    allowedHeaders: ['Authorization', 'Content-Type']  // Explicitly allow Authorization header
+}))
 app.use(bodyParser.json()); // Menggunakan body parser untuk JSON
 app.use(express.static(path.join(__dirname, '../frontend'))); // Serve frontend files
 
 // Routes
 app.use('/api/data', dataRoutes); // Route untuk data umum
 app.use('/api/dailyWellness', dailyWellnessRoutes); // Route untuk wellness data
+app.use('/api/discussions', discussionRoutes);
 // app.use('/api/auth', authRoutes); // Menambahkan route untuk autentikasi pengguna (login/register)
 
 // MongoDB Connection

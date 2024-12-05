@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/dataModel');
 const router = express.Router();
-const SECRET_KEY = 'mysecretkey';
+require('dotenv').config()
 
 // Login Route
 router.post('/login', async (req, res) => {
@@ -11,7 +11,7 @@ router.post('/login', async (req, res) => {
         const { email, password } = req.body;
 
         // Cari pengguna berdasarkan email
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email }).select('+password');
         if (!user) {
             return res.status(400).json({ message: 'Email atau password salah' });
         }
@@ -23,12 +23,13 @@ router.post('/login', async (req, res) => {
         }
 
         // Buat token JWT
-        const token = jwt.sign({ id: user._id, username: user.username }, SECRET_KEY, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWT_TOKEN, { expiresIn: '1h' });
 
         // Kirim token dan username ke frontend
         res.status(200).json({ message: 'Login berhasil', token, username: user.username });
     } catch (error) {
-        res.status(500).json({ message: 'Terjadi kesalahan server' });
+        console.log(error)
+        res.status(500).json({ message: error });
     }
 });
 
