@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="peacefulPathApp">
+
+<head>
+    <title>Peaceful Path - Mental Health Forum</title>
+    <link rel="stylesheet" href="../css/forum.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="../controllers/forumController.js"></script>
+</head>
+
+<body ng-controller="ForumController as forumCtrl">
+    <div class="container">
+        <header>
+            <h1>Peaceful Path Forum</h1>
+        </header>
+
+        <div class="forum-header">
+            <!-- Link untuk menuju halaman baru -->
+            <a href="../views/diskusi.html">
+                <button>Mulai Diskusi</button>
+            </a>
+            <input type="text" ng-model="searchQuery" placeholder="Cari bahasan di sini">
+        </div>
+
+        <div class="forum-body">
+            <!-- Sidebar Kategori -->
+            <div class="forum-sidebar">
+                <h2>Topik</h2>
+                <ul class="topic-list">
+                    <li>
+                        <label>
+                            <input type="radio" name="category" ng-model="forumCtrl.selectedCategory" ng-value="'All'"
+                                ng-change="forumCtrl.filterTopics()">
+                            All
+                        </label>
+                    </li>
+                    <li ng-repeat="category in forumCtrl.categories">
+                        <label>
+                            <input type="radio" name="category" ng-model="forumCtrl.selectedCategory"
+                                ng-value="category" ng-change="forumCtrl.filterTopics()">
+                            {{ category }}
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Daftar Topik -->
+            <div class="topics">
+                <h2>Topik Terbaru</h2>
+                <ul>
+                    <li ng-repeat="topic in forumCtrl.filteredTopics | filter:searchQuery">
+                        <h3>{{ topic.title }}</h3>
+                        <p>{{ topic.author ? topic.author : 'Anonymous' }} on {{ topic.date }}</p>
+                        <span>{{ topic.views }} dilihat</span> | <span>{{ topic.comments }} komentar</span>
+                        <div ng-if="topic.author === forumCtrl.userName">
+                            <a ng-href="./edit.html?id={{topic.slug}}">Edit</a>
+                            <button ng-click="forumCtrl.delete(topic.id)">Hapus</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

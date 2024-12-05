@@ -6,6 +6,7 @@ const User = require('./models/dataModel');
 const cors = require('cors');
 const path = require('path');
 const dailyWellnessRoutes = require('./routes/dailyWellnessRoutes');
+const discussionRoutes = require('./routes/discussionRoutes');
 const selfcareRoutes = require('./routes/selfcareRoutes');
 const multer = require('multer');
 // const authRoutes = require('./routes/authRoutes'); // Menambahkan route untuk autentikasi
@@ -21,12 +22,16 @@ app.use(cors()); // Mengaktifkan CORS untuk semua domain
 
 
 // Middleware
+app.use(cors({
+    allowedHeaders: ['Authorization', 'Content-Type']  // Explicitly allow Authorization header
+}))
 app.use(bodyParser.json()); // Menggunakan body parser untuk JSON
 app.use(express.static(path.join(__dirname, '../frontend'))); // Serve frontend files
 
 // Routes
 app.use('/api/data', dataRoutes); // Route untuk data umum
 app.use('/api/dailyWellness', dailyWellnessRoutes); // Route untuk wellness data
+app.use('/api/discussions', discussionRoutes);
 app.use('/api/sounds', selfcareRoutes);
 // app.use('/api/auth', authRoutes); // Menambahkan route untuk autentikasi pengguna (login/register)
 app.use('./uploads', express.static(path.join(__dirname, 'uploads')));
