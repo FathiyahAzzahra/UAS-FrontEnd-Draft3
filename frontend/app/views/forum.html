@@ -6,10 +6,40 @@
     <link rel="stylesheet" href="../css/forum.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="../controllers/forumController.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+
 </head>
 
 <body ng-controller="ForumController as forumCtrl">
-    <div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: var(--primary);">
+        <div class="container d-flex justify-content-between align-items-center">
+            <!-- Brand -->
+            <a class="navbar-brand text-white" href="../../index.html">Peaceful Path</a>
+
+            <!-- Menu Navigasi -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item"><a class="nav-link text-white" href="./selfcare.html">Self-care</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-white" href="./dailyWellness.html">Daily
+                            Wellness</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Forum</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="./reflection.html">Reflection</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="container main min-vh-100 pt-5 mt-5">
+
         <header>
             <h1>Peaceful Path Forum</h1>
         </header>
@@ -53,14 +83,56 @@
                         <p>{{ topic.author ? topic.author : 'Anonymous' }} on {{ topic.date }}</p>
                         <span>{{ topic.views }} dilihat</span> | <span>{{ topic.comments }} komentar</span>
                         <div ng-if="topic.author === forumCtrl.userName">
-                            <a ng-href="./edit.html?id={{topic.slug}}">Edit</a>
-                            <button ng-click="forumCtrl.delete(topic.id)">Hapus</button>
+                            <a ng-href="./edit.html?id={{topic.slug}}" class="btn btn-primary btn-sm">Edit</a>
+                            <button ng-click="forumCtrl.delete(topic.id)" class="btn btn-danger btn-sm">Hapus</button>
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
+
+    <!-- Footer Section -->
+
+    <footer class="py-5 pt-5 min-vh-75"
+        style="background: linear-gradient(to top, var(--secondary) 80%, var(--background) 100%);">
+        <div class="container pt-5 min-vh-75">
+            <div class="row justify-content-between">
+                <!-- Footer Description -->
+                <div class="col-md-6 mb-4 text-center">
+                    <h3 class="mb-3 fw-bold" style="color: var(--primary);">About Peaceful Path</h3>
+                    <p class="fw-bold" style="color: var(--background);">Peaceful Path is your sanctuary for mental
+                        wellness. We offer
+                        guided meditations, daily wellness tracking, and a supportive community to help you find
+                        tranquility.</p>
+                </div>
+
+                <!-- Footer Social Media Links -->
+                <div class="col-md-6 mb-4 text-center">
+                    <h3 class="fw-bold mb-3" style="color: var(--primary);">Follow Us</h3>
+                    <p class="fw-bold" style="color: var(--background);">Stay connected with us on social media for the
+                        latest updates,
+                        tips, and community support.</p>
+                    <ul class="social-icons list-unstyled d-flex justify-content-center gap-5">
+                        <li><a href="https://www.facebook.com/" aria-label="Facebook"
+                                class="text-decoration-none me-3"><i class="fab fa-facebook-f"
+                                    style="color: var(--background);"></i></a></li>
+                        <li><a href="https://x.com/i/flow/login" aria-label="Twitter"
+                                class="text-decoration-none me-3"><i class="fab fa-twitter"
+                                    style="color: var(--background);"></i></a></li>
+                        <li><a href="https://www.instagram.com/?hl=en" aria-label="Instagram"
+                                class="text-decoration-none me-3"><i class="fab fa-instagram"
+                                    style="color: var(--background);"></i></a></li>
+                        <li><a href="https://www.youtube.com/" aria-label="YouTube" class="text-decoration-none"><i
+                                    class="fab fa-youtube" style="color: var(--background);"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
