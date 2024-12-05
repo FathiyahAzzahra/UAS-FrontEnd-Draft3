@@ -18,6 +18,9 @@ angular.module('dailyWellnessApp')
       deletePlan: function(planId) {
         return $http.delete(`${baseUrl}/plans/${planId}`);
       },
+      editPlan: function(planId, updatedPlan) {
+        return $http.put(`${baseUrl}/plans/${planId}`, updatedPlan);
+      },
 
       // Moods
       addMood: function(mood) {
@@ -25,6 +28,9 @@ angular.module('dailyWellnessApp')
       },
       deleteMood: function(moodId) {
         return $http.delete(`${baseUrl}/moods/${moodId}`);
+      },
+      editMood: function(moodId, updatedMood) {
+        return $http.put(`${baseUrl}/moods/${moodId}`, updatedMood);
       },
 
       // Positive Affirmations
@@ -37,6 +43,9 @@ angular.module('dailyWellnessApp')
       deleteAffirmation: function(affirmationId) {
         return $http.delete(`${baseUrl}/affirmations/${affirmationId}`);
       },
+      editAffirmation: function(affirmationId, updatedAffirmation) {
+        return $http.put(`${baseUrl}/affirmations/${affirmationId}`, updatedAffirmation);
+      },
 
       // Additional method to update data (if needed)
       updatePlan: function(planId, updatedPlan) {
@@ -47,6 +56,6 @@ angular.module('dailyWellnessApp')
       },
       updateAffirmation: function(affirmationId, updatedAffirmation) {
         return $http.put(`${baseUrl}/affirmations/${affirmationId}`, updatedAffirmation);
-      }
+      },
     };
   });

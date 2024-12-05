@@ -23,6 +23,17 @@ app.config(function ($routeProvider) {
             templateUrl: 'app/views/selfcare.html',
             controller: 'SelfcareController',
         })
+        .when('/dailyWellness', {
+            templateUrl: 'app/views/dailyWellness.html',
+            controller: 'DailyWellnessController',
+            resolve: {
+                auth: function ($location, AuthService) {
+                    if (!AuthService.isLoggedIn()) {
+                        $location.path('/login'); // Redirect to login if not authenticated
+                    }
+                }
+            }
+        })
         .otherwise({
             redirectTo: '/',
         });

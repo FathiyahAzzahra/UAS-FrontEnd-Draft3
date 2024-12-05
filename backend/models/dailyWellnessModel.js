@@ -53,5 +53,16 @@ DailyWellnessSchema.methods.getFavoriteAffirmations = function () {
   return this.affirmations.filter(affirmation => affirmation.favorite);
 };
 
+// Tambahkan metode untuk mengedit mood
+DailyWellnessSchema.methods.editMood = function (moodId, updatedMood) {
+    const moodIndex = this.moods.findIndex(mood => mood._id.toString() === moodId);
+    if (moodIndex !== -1) {
+        this.moods[moodIndex].mood = updatedMood.mood;
+        this.moods[moodIndex].date = updatedMood.date;
+        return this.save(); // Simpan perubahan
+    }
+    throw new Error('Mood not found');
+};
+
 // Create and export the model
 module.exports = mongoose.model('DailyWellness', DailyWellnessSchema);

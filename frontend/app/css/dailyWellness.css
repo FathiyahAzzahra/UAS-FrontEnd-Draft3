@@ -11,7 +11,7 @@
 
 /* Umum */
 body {
-    background-color: var(--background);
+    background-color: var(--secondary);
     font-family: 'Roboto', sans-serif;
     color: var(--primary);
     margin: 0;
