@@ -23,7 +23,6 @@ app.use(cors()); // Mengaktifkan CORS untuk semua domain
 // Middleware
 app.use(bodyParser.json()); // Menggunakan body parser untuk JSON
 app.use(express.static(path.join(__dirname, '../frontend'))); // Serve frontend files
-app.use('/uploads', express.static('uploads'));
 
 // Routes
 app.use('/api/data', dataRoutes); // Route untuk data umum
@@ -59,7 +58,7 @@ app.get('/register', (req, res) => {
 });
 
 app.get('/selfcare', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/selfcare.html'));
+  res.sendFile(path.join(__dirname, '../frontend/selfcare.html'));
 });
 
 // Fallback for unknown routes (optional)
@@ -71,7 +70,7 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   console.error(err.stack); // Log error stack trace
   res.status(500).json({ message: 'Something went wrong!' });
-}); 
+});
 
 // Start the server
 app.listen(PORT, () => {
