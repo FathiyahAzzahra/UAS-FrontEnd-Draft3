@@ -1,126 +1,171 @@
+/* Variabel warna */
 :root {
     --primary: #5F6F52;
-    /* Hijau tua */
     --secondary: #A9B388;
-    /* Hijau muda */
     --background: #FEFAE0;
-    /* Krem */
     --accent: #B99470;
-    /* Coklat muda */
 }
 
-/* Umum */
-body {
-    background-color: var(--secondary);
-    font-family: 'Roboto', sans-serif;
-    color: var(--primary);
-    margin: 0;
-    padding: 0;
-}
-
-/* Heading */
-h1,
-h2 {
-    color: var(--primary);
-    text-align: center;
-}
-
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-h2 {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-}
-
-/* List Group */
-.list-group-item {
+/* Video Section */
+.container.mt-5.pt-5 {
     background-color: var(--background);
+    padding: 40px 0;
+    border-radius: 10px;
+}
+
+h2.mb-4.text-center {
     color: var(--primary);
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+/* Main Content */
+.container.mt-5.pt-5 {
+    background-color: var(--background);
+    padding: 40px 0;
+    border-radius: 10px;
+}
+
+.card {
+    background-color: white;
     border: 1px solid var(--secondary);
-    border-radius: 8px;
-    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-.list-group-item .badge {
-    font-size: 0.8rem;
-    padding: 5px 10px;
+.card:hover {
+    transform: translateY(-5px);
 }
 
-/* Buttons */
-.btn {
+.card-body {
+    padding: 20px;
+    color: var(--primary);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.card-text {
+    color: var(--secondary);
+    font-size: 1rem;
+}
+
+.card-img-top {
+    max-width: 200px;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.card-img-top:hover {
+    transform: scale(1.1);
+}
+
+/* Section Titles */
+h4,
+h5 {
+    color: var(--primary);
+}
+
+h4 {
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+}
+
+/* Style untuk Form Input di Cards */
+.card-body {
+    padding: 1.5rem;
+    /* Menambah padding agar konten lebih terpisah dengan tepi card */
+}
+
+form.row.g-3 {
+    margin-top: 20px;
+    /* Spasi antara form dan konten sebelumnya */
+}
+
+form .col-md-12 {
+    margin-bottom: 15px;
+    /* Memberikan jarak antar input */
+}
+
+form input.form-control,
+form select.form-select {
+    border-radius: 0.5rem;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    /* Memberikan border lebih halus */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Memberikan efek bayangan halus */
+    width: 100%;
+}
+
+/* Tombol di dalam form */
+form button[type="submit"] {
+    background-color: var(--primary);
     color: #fff;
+    border-radius: 0.5rem;
+    padding: 12px 20px;
+    font-size: 1.1rem;
     border: none;
+    width: 100%;
+    transition: background-color 0.3s ease;
 }
 
-.btn-primary {
-    background-color: var(--primary);
-}
-
-.btn-primary:hover {
-    background-color: var(--secondary);
-    color: #fff;
-}
-
-.btn-success {
-    background-color: var(--secondary);
-}
-
-.btn-success:hover {
-    background-color: var(--primary);
-}
-
-.btn-danger {
+form button[type="submit"]:hover {
     background-color: var(--accent);
 }
 
-.btn-danger:hover {
-    background-color: #914d30;
-    /* Warna coklat lebih gelap */
-}
-
-.btn-warning {
-    background-color: #FFC107;
-    /* Warna kuning default Bootstrap */
-    color: var(--primary);
-}
-
-.btn-warning:hover {
-    background-color: #E0A800;
-    /* Warna kuning lebih gelap */
-}
-
-/* Form Inputs */
-input[type="text"],
-input[type="date"],
-select.form-select {
-    background-color: #fff;
+ul.list-group-item {
+    background-color: var(--background);
     border: 1px solid var(--secondary);
+    border-radius: 8px;
     color: var(--primary);
-    padding: 10px;
-    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-input:focus,
-select:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 5px var(--secondary);
+ul.list-group-item .btn {
+    font-size: 0.9rem;
+    border-radius: 8px;
 }
 
-/* Modal Styling */
+/* Modal */
+.modal-content {
+    background-color: var(--background);
+    border-radius: 10px;
+}
+
 .modal-header {
     background-color: var(--secondary);
-    color: #fff;
+    color: var(--primary);
 }
 
-.modal-content {
-    border-radius: 12px;
-    background-color: var(--background);
+.modal-footer {
+    background-color: var(--secondary);
+}
+
+.modal-body {
+    color: var(--primary);
 }
 
 .modal-title {
-    color: var(--primary);
+    font-size: 1.25rem;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .container.mt-5.pt-5 {
+        padding: 20px 0;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .card-img-top {
+        max-width: 150px;
+    }
 }

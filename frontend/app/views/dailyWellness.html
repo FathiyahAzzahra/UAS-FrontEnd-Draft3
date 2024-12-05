@@ -34,109 +34,171 @@
         </div>
     </nav>
 
-
-    <!-- Main Content -->
+    <!-- Video Section -->
     <div class="container mt-5 pt-5">
-        <!-- Plans Section -->
-        <div class="mb-5">
-            <h2>Plans</h2>
-            <ul class="list-group mb-3">
-                <li class="list-group-item d-flex justify-content-between align-items-center"
-                    ng-repeat="plan in data.plans">
-                    <div>
-                        <strong>{{ plan.title }}</strong> - <em>{{ plan.date | date }}</em>
-                        <span class="badge bg-success" ng-if="plan.completed">Completed</span>
-                    </div>
-                    <div>
-                        <button class="btn btn-success btn-sm me-2" ng-click="completePlan(plan)"
-                            ng-if="!plan.completed">Mark Complete</button>
-                        <button class="btn btn-danger btn-sm" ng-click="deletePlan(plan)">Delete</button>
-                    </div>
-                </li>
-            </ul>
-
-            <form class="row g-2" ng-submit="addPlan(newPlan)" novalidate>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Plan Title" ng-model="newPlan.title"
-                        ng-required="true" />
-                </div>
-                <div class="col-md-4">
-                    <input type="date" class="form-control" ng-model="newPlan.date" ng-required="true" />
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary w-100">Add Plan</button>
-                </div>
-            </form>
-        </div>
-
-        <!-- Mood Tracker Section -->
-        <div class="mb-5">
-            <h2>Mood Tracker</h2>
-            <ul class="list-group mb-3">
-                <li class="list-group-item d-flex justify-content-between align-items-center"
-                    ng-repeat="mood in data.moods">
-                    <div>
-                        <strong>{{ mood.date | date }}</strong>: {{ mood.mood }}
-                    </div>
-                    <div>
-                        <button class="btn btn-warning btn-sm me-2" ng-click="openEditMoodModal(mood)">Edit</button>
-                        <button class="btn btn-danger btn-sm" ng-click="deleteMood(mood)">Delete</button>
-                    </div>
-                </li>
-            </ul>
-            <form class="row g-2" ng-submit="addMood(newMood)">
-                <div class="col-md-6">
-                    <select class="form-select" ng-model="newMood.mood" ng-required="true">
-                        <option value="" disabled selected>Choose Mood</option>
-                        <option value="Happy">Happy</option>
-                        <option value="Sad">Sad</option>
-                        <option value="Neutral">Neutral</option>
-                        <option value="Excited">Excited</option>
-                        <option value="Angry">Angry</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <input type="date" class="form-control" ng-model="newMood.date" ng-required="true" />
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary w-100">Add Mood</button>
-                </div>
-            </form>
-        </div>
-
-        <!-- Positive Affirmations Section -->
-        <div>
-            <h2>Positive Affirmations</h2>
-            <ul class="list-group mb-3">
-                <li class="list-group-item d-flex justify-content-between align-items-center"
-                    ng-repeat="affirmation in data.affirmations">
-                    <div>
-                        <strong>{{ affirmation.text }}</strong>
-                        <span class="badge bg-primary" ng-if="affirmation.favorite">Favorite</span>
-                    </div>
-                    <div>
-                        <button class="btn btn-warning btn-sm me-2"
-                            ng-click="openEditAffirmationModal(affirmation)">Edit</button>
-                        <button class="btn btn-danger btn-sm" ng-click="deleteAffirmation(affirmation)">Delete</button>
-                        <button class="btn btn-primary btn-sm" ng-click="toggleFavorite(affirmation)">
-                            {{ affirmation.favorite ? "Unfavorite" : "Favorite" }}
-                        </button>
-                    </div>
-                </li>
-            </ul>
-            <form class="row g-2" ng-submit="addAffirmation(newAffirmation)">
-                <div class="col-md-10">
-                    <input type="text" class="form-control" placeholder="Write a positive affirmation"
-                        ng-model="newAffirmation.text" ng-required="true" />
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary w-100">Add</button>
-                </div>
-            </form>
+        <h2 class="mb-4 text-center">Welcome to Peaceful Path</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <video class="w-100" autoplay muted loop>
+                    <source src="../../assets/fanny/dailyWellness.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
         </div>
     </div>
 
-    <!-- Modals for Editing Mood and Affirmation -->
+
+    <!-- Main Content -->
+    <div class="container mt-5 pt-5">
+        <h2 class="mb-4">Mindful Space</h2>
+        <div class="row g-4">
+            <!-- Plans Card -->
+            <div class="col-md-4">
+                <div class="card shadow-sm" style="cursor: pointer;" ng-click="showPlanForm = !showPlanForm">
+                    <!-- Gambar Ikon untuk Plans -->
+                    <img src="../../assets/fanny/plan.png" alt="Plan Icon" class="card-img-top"
+                        style="max-width: 250px; margin: 0 auto;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            Plans
+                        </h5>
+                        <p class="card-text text-center">Plan Your Journey</p>
+                    </div>
+                </div>
+
+                <!-- Display Plan Form only if showPlanForm is true -->
+                <div ng-show="showPlanForm" class="mt-3">
+                    <h4>Add Plan</h4>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            ng-repeat="plan in data.plans">
+                            <div>
+                                <strong>{{ plan.title }}</strong> - <em>{{ plan.date | date }}</em>
+                                <span class="badge bg-success" ng-if="plan.completed">Completed</span>
+                            </div>
+                            <div>
+                                <button class="btn btn-success btn-sm me-2" ng-click="completePlan(plan)"
+                                    ng-if="!plan.completed">Mark Complete</button>
+                                <button class="btn btn-danger btn-sm" ng-click="deletePlan(plan)">Delete</button>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="row g-3" ng-submit="addPlan(newPlan)" novalidate>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" placeholder="Plan Title" ng-model="newPlan.title"
+                                ng-required="true" />
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <input type="date" class="form-control" ng-model="newPlan.date" ng-required="true" />
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <button type="submit" class="btn btn-primary w-100">Add Plan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Mood Card -->
+            <div class="col-md-4">
+                <div class="card shadow-sm" style="cursor: pointer;" ng-click="showMoodForm = !showMoodForm">
+                    <!-- Gambar Ikon untuk Mood -->
+                    <img src="../../assets/fanny/mood.png" alt="Mood Icon" class="card-img-top"
+                        style="max-width: 250px; margin: 0 auto;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            Mood Tracker
+                        </h5>
+                        <p class="card-text text-center">Mood Check-In</p>
+                    </div>
+                </div>
+
+                <!-- Display Mood Form only if showMoodForm is true -->
+                <div ng-show="showMoodForm" class="mt-3">
+                    <h4>Add Mood</h4>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            ng-repeat="mood in data.moods">
+                            <div>
+                                <strong>{{ mood.date | date }}</strong>: {{ mood.mood }}
+                            </div>
+                            <div>
+                                <button class="btn btn-warning btn-sm me-2"
+                                    ng-click="openEditMoodModal(mood)">Edit</button>
+                                <button class="btn btn-danger btn-sm" ng-click="deleteMood(mood)">Delete</button>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="row g-3" ng-submit="addMood(newMood)">
+                        <div class="col-md-12">
+                            <select class="form-select" ng-model="newMood.mood" ng-required="true">
+                                <option value="" disabled selected>Choose Mood</option>
+                                <option value="Happy">Happy</option>
+                                <option value="Sad">Sad</option>
+                                <option value="Neutral">Neutral</option>
+                                <option value="Excited">Excited</option>
+                                <option value="Angry">Angry</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <input type="date" class="form-control" ng-model="newMood.date" ng-required="true" />
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <button type="submit" class="btn btn-primary w-100">Add Mood</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Affirmation Card -->
+            <div class="col-md-4">
+                <div class="card shadow-sm" style="cursor: pointer;"
+                    ng-click="showAffirmationForm = !showAffirmationForm">
+                    <!-- Gambar Ikon untuk Affirmation -->
+                    <img src="../../assets/fanny/affirmations.png" alt="Affirmation Icon" class="card-img-top"
+                        style="max-width: 250px; margin: 0 auto;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            Positive Affirmations
+                        </h5>
+                        <p class="card-text text-center">Write Your Power Words</p>
+                    </div>
+                </div>
+
+                <!-- Display Affirmation Form only if showAffirmationForm is true -->
+                <div ng-show="showAffirmationForm" class="mt-3">
+                    <h4>Add Affirmation</h4>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            ng-repeat="affirmation in data.affirmations">
+                            <div>
+                                <strong>{{ affirmation.text }}</strong>
+                                <span class="badge bg-primary" ng-if="affirmation.favorite">Favorite</span>
+                            </div>
+                            <div>
+                                <button class="btn btn-warning btn-sm me-2"
+                                    ng-click="openEditAffirmationModal(affirmation)">Edit</button>
+                                <button class="btn btn-danger btn-sm"
+                                    ng-click="deleteAffirmation(affirmation)">Delete</button>
+                                <button class="btn btn-primary btn-sm" ng-click="toggleFavorite(affirmation)">
+                                    {{ affirmation.favorite ? "Unfavorite" : "Favorite" }}
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="row g-3" ng-submit="addAffirmation(newAffirmation)">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" placeholder="Write a positive affirmation"
+                                ng-model="newAffirmation.text" ng-required="true" />
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <button type="submit" class="btn btn-primary w-100">Add Affirmation</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal for Editing Mood -->
     <div class="modal" id="editMoodModal" tabindex="-1">
         <div class="modal-dialog">
@@ -150,6 +212,8 @@
                         <option value="Happy">Happy</option>
                         <option value="Sad">Sad</option>
                         <option value="Neutral">Neutral</option>
+                        <option value="Excited">Excited</option>
+                        <option value="Angry">Angry</option>
                     </select>
                     <input type="date" class="form-control mt-3" ng-model="editMood.date">
                 </div>
@@ -169,7 +233,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" class="form-control" ng-model="editAffirmation.text">
+                    <input type="text" class="form-control" ng-model="editAffirmation.text"
+                        placeholder="Edit Affirmation" />
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" ng-click="saveEditedAffirmation()">Save</button>
@@ -179,32 +244,47 @@
     </div>
 
     <!-- Footer Section -->
-    <div class="container pt-5">
-        <div class="row justify-content-between">
-            <div class="col-md-6 text-center">
-                <h3 class="mb-3 fw-bold" style="color: var(--primary);">About Peaceful Path</h3>
-                <p class="fw-bold" style="color: var(--background);">Peaceful Path is your sanctuary for mental
-                    wellness. We offer guided meditations, daily wellness tracking, and a supportive community to help
-                    you find tranquility.</p>
-            </div>
 
-            <div class="col-md-6 mb-4 text-center">
-                <h3 class="fw-bold mb-3" style="color: var(--primary);">Follow Us</h3>
-                <p class="fw-bold" style="color: var(--background);">Stay connected with us on social media for the
-                    latest updates, tips, and community support.</p>
-                <ul class="social-icons list-unstyled d-flex justify-content-center gap-5">
-                    <li><a href="https://www.facebook.com/" aria-label="Facebook" class="text-decoration-none me-3"><i
-                                class="fab fa-facebook-f" style="color: var(--background);"></i></a></li>
-                    <li><a href="https://x.com/i/flow/login" aria-label="Twitter" class="text-decoration-none me-3"><i
-                                class="fab fa-twitter" style="color: var(--background);"></i></a></li>
-                    <li><a href="https://www.instagram.com/?hl=en" aria-label="Instagram"
-                            class="text-decoration-none me-3"><i class="fab fa-instagram"
-                                style="color: var(--background);"></i></a></li>
-                    <li><a href="https://www.youtube.com/" aria-label="YouTube" class="text-decoration-none"><i
-                                class="fab fa-youtube" style="color: var(--background);"></i></a></li>
-                </ul>
+    <footer class="py-5 pt-5 min-vh-75"
+        style="background: linear-gradient(to top, var(--secondary) 80%, var(--background) 100%);">
+        <div class="container pt-5 min-vh-75">
+            <div class="row justify-content-between">
+                <!-- Footer Description -->
+                <div class="col-md-6 mb-4 text-center">
+                    <h3 class="mb-3 fw-bold" style="color: var(--primary);">About Peaceful Path</h3>
+                    <p class="fw-bold" style="color: var(--background);">Peaceful Path is your sanctuary for mental
+                        wellness. We offer
+                        guided meditations, daily wellness tracking, and a supportive community to help you find
+                        tranquility.</p>
+                </div>
+
+                <!-- Footer Social Media Links -->
+                <div class="col-md-6 mb-4 text-center">
+                    <h3 class="fw-bold mb-3" style="color: var(--primary);">Follow Us</h3>
+                    <p class="fw-bold" style="color: var(--background);">Stay connected with us on social media for the
+                        latest updates,
+                        tips, and community support.</p>
+                    <ul class="social-icons list-unstyled d-flex justify-content-center gap-5">
+                        <li><a href="https://www.facebook.com/" aria-label="Facebook"
+                                class="text-decoration-none me-3"><i class="fab fa-facebook-f"
+                                    style="color: var(--background);"></i></a></li>
+                        <li><a href="https://x.com/i/flow/login" aria-label="Twitter"
+                                class="text-decoration-none me-3"><i class="fab fa-twitter"
+                                    style="color: var(--background);"></i></a></li>
+                        <li><a href="https://www.instagram.com/?hl=en" aria-label="Instagram"
+                                class="text-decoration-none me-3"><i class="fab fa-instagram"
+                                    style="color: var(--background);"></i></a></li>
+                        <li><a href="https://www.youtube.com/" aria-label="YouTube" class="text-decoration-none"><i
+                                    class="fab fa-youtube" style="color: var(--background);"></i></a></li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </footer>
+
+    <!-- Footer Copyright Section -->
+    <div class="footer-copyright text-center py-3" style="background-color: var(--primary);">
+        <p class="mb-0 text-white fw-bold">&copy; 2024 Peaceful Path. Your journey to peace begins here.</p>
     </div>
 
     <!-- Bootstrap JS and Popper -->
