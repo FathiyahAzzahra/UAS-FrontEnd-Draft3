@@ -29,7 +29,7 @@
         <div class="container d-flex justify-content-between align-items-center">
             <!-- Brand -->
             <a class="navbar-brand text-white" href="../../index.html">Peaceful Path</a>
-    
+
             <!-- Menu Navigasi -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,13 +37,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link text-white" href="#">Selfcare</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="./dailyWellness.html">Daily Wellness</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#!/community">Community</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Self-Care</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="./dailyWellness.html">Daily Wellness</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-white" href="./forum.html">Forum</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="./reflection.html">Reflection</a></li>
                 </ul>
             </div>
-    
+
         </div>
     </nav>
 
@@ -75,8 +76,8 @@
             </button>
         </div>
     </div>
-    
-    
+
+
     <!-- Meditation & Relaxation Section -->
     <section id="meditation" class="mt-5">
         <div class="container">
@@ -122,12 +123,12 @@
             </div>
         </div>
     </section>
-    
+
     <section id="personal-sounds" class="mt-5">
         <div class="container">
             <h2 class="text-center">Your Personal Sounds</h2>
             <p class="text-center">Store your favorite sounds to relax here, make it your safe space!</p>
-    
+
             <!-- Sound List -->
             <div ng-if="sounds.length > 0">
                 <div class="row g-4 mb-5 px-5">
@@ -145,7 +146,8 @@
                                     <button class="btn" style="background-color: #FEFAE0;" ng-click="editSound(sound)">
                                         <i class="fas fa-edit"></i> Edit
                                     </button>
-                                    <button class="btn" style="background-color: #B99470;" ng-click="deleteSound(sound._id)">
+                                    <button class="btn" style="background-color: #B99470;"
+                                        ng-click="deleteSound(sound._id)">
                                         <i class="fas fa-trash"></i> Delete
                                     </button>
                                 </div>
@@ -157,9 +159,9 @@
             <div ng-if="sounds.length == 0">
                 <p>No sounds available.</p> <!-- Pesan jika tidak ada data -->
             </div>
-            
-            
-    
+
+
+
             <!-- Upload New Sound Form -->
             <form ng-submit="uploadSound()" class="upload-form">
                 <div class="mb-3">
@@ -168,17 +170,19 @@
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea id="description" class="form-control" ng-model="newSound.description" rows="3" required></textarea>
+                    <textarea id="description" class="form-control" ng-model="newSound.description" rows="3"
+                        required></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="file" class="form-label">Upload Sound</label>
-                    <input type="file" name="soundFile" id="file" class="form-control" file-model="newSound.file" accept="audio/*" required>
+                    <input type="file" name="soundFile" id="file" class="form-control" file-model="newSound.file"
+                        accept="audio/*" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Upload Sound</button>
             </form>
         </div>
     </section>
-    
+
     <div class="modal fade" id="editSoundModal" tabindex="-1" aria-labelledby="editSoundModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -190,11 +194,13 @@
                     <form ng-submit="updateSound()">
                         <div class="mb-3">
                             <label for="edit-title" class="form-label">Sound Title</label>
-                            <input type="text" id="edit-title" class="form-control" ng-model="selectedSound.title" required>
+                            <input type="text" id="edit-title" class="form-control" ng-model="selectedSound.title"
+                                required>
                         </div>
                         <div class="mb-3">
                             <label for="edit-description" class="form-label">Description</label>
-                            <textarea id="edit-description" class="form-control" ng-model="selectedSound.description" rows="3" required></textarea>
+                            <textarea id="edit-description" class="form-control" ng-model="selectedSound.description"
+                                rows="3" required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="edit-sound" class="form-label">Sound File</label>
@@ -209,6 +215,45 @@
             </div>
         </div>
     </div>
+
+    <!-- Footer Section -->
+
+    <footer class="py-5 pt-5 min-vh-75"
+        style="background: linear-gradient(to top, var(--secondary) 80%, var(--background) 100%);">
+        <div class="container pt-5 min-vh-75">
+            <div class="row justify-content-between">
+                <!-- Footer Description -->
+                <div class="col-md-6 mb-4 text-center">
+                    <h3 class="mb-3 fw-bold" style="color: var(--primary);">About Peaceful Path</h3>
+                    <p class="fw-bold" style="color: var(--background);">Peaceful Path is your sanctuary for mental
+                        wellness. We offer
+                        guided meditations, daily wellness tracking, and a supportive community to help you find
+                        tranquility.</p>
+                </div>
+
+                <!-- Footer Social Media Links -->
+                <div class="col-md-6 mb-4 text-center">
+                    <h3 class="fw-bold mb-3" style="color: var(--primary);">Follow Us</h3>
+                    <p class="fw-bold" style="color: var(--background);">Stay connected with us on social media for the
+                        latest updates,
+                        tips, and community support.</p>
+                    <ul class="social-icons list-unstyled d-flex justify-content-center gap-5">
+                        <li><a href="https://www.facebook.com/" aria-label="Facebook"
+                                class="text-decoration-none me-3"><i class="fab fa-facebook-f"
+                                    style="color: var(--background);"></i></a></li>
+                        <li><a href="https://x.com/i/flow/login" aria-label="Twitter"
+                                class="text-decoration-none me-3"><i class="fab fa-twitter"
+                                    style="color: var(--background);"></i></a></li>
+                        <li><a href="https://www.instagram.com/?hl=en" aria-label="Instagram"
+                                class="text-decoration-none me-3"><i class="fab fa-instagram"
+                                    style="color: var(--background);"></i></a></li>
+                        <li><a href="https://www.youtube.com/" aria-label="YouTube" class="text-decoration-none"><i
+                                    class="fab fa-youtube" style="color: var(--background);"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="../controllers/homeController.js"></script>
 </body>

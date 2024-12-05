@@ -17,46 +17,8 @@ body {
     /* To avoid bottom cut-off */
 }
 
-/* Header */
-header {
-    background: #5F6F52;
-    /* Dark green background */
-    color: #FEFAE0;
-    /* Cream text */
-    padding: 2rem;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-    font-size: 2rem;
-    font-weight: 700;
-}
-
-/* Navbar */
-.navbar {
-    background-color: #5F6F52;
-    /* Dark green background */
-    padding: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-brand,
-.nav-link {
-    color: #FEFAE0 !important;
-    /* Cream text */
-    font-size: 1rem;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.nav-link:hover {
-    color: #B99470 !important;
-    /* Brown accent */
-}
-
 /* Container */
-.container {
+/* .container {
     width: 80%;
     max-width: 1000px;
     margin: 30px auto;
@@ -64,7 +26,7 @@ header h1 {
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
+} */
 
 /* Sidebar */
 .forum-sidebar {
