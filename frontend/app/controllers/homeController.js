@@ -17,26 +17,35 @@ app.controller('MainController', function ($scope) {
 
 document.addEventListener('DOMContentLoaded', function () {
     const authSection = document.getElementById('auth-section');
+
+    // Ambil username dan token dari localStorage
     const username = localStorage.getItem('username');
-    if (username) {
+    const token = localStorage.getItem('token');
+
+    if (username && token) {
         // Jika sudah login, tampilkan username dan tombol logout
         authSection.innerHTML = `
-                    <button class="btn btn-light me-3" onclick="logout()">Logout</button>    
-                    <span class="text-white ms-2">Hi, ${username}</span>
-                    `;
+            <button class="btn btn-light me-3" onclick="logout()">Logout</button>    
+            <a href="./app/views/profile.html" class="text-white ms-2" style="text-decoration: none;">Hi, ${username}</a>
+        `;
     } else {
         // Jika belum login, tampilkan tombol login
         authSection.innerHTML = `
-                        <a href="./app/views/login.html" class="btn btn-light ms-3">Login</a>
-                    `;
+            <a href="./app/views/login.html" class="btn btn-light ms-3">Login</a>
+        `;
     }
 });
 
+// Fungsi logout
 function logout() {
-    localStorage.removeItem('token'); // Hapus token
-    localStorage.removeItem('username'); // Hapus username
-    location.reload(); // Refresh halaman
+    // Hapus data dari localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+
+    // Redirect ke halaman login
+    window.location.href = '../../index.html';
 }
+
 
 const carouselElement = document.querySelector('#carouselExample');
 const carousel = new bootstrap.Carousel(carouselElement, {

@@ -1,222 +1,3 @@
-:root {
-    --HijauTua: #5F6F52;
-    --HijauMuda: #A9B388;
-    --cokelatMuda: #FEFAE0;
-    --cokelatTua: #B99470;
-    --textColor1: #221c16;
-    --textColor2: #474543;
-    --white: #ffffff;
-    --navbar-bg: #f8f9fa;
-    --btn-filter-bg: #f0f0f0;
-    --btn-filter-active-bg: #1ed760;
-    --list-bar-bg: #e9ecef;
-    --primary-btn-hover: #ff6347;
-}
-
-/* General body styling */
-body {
-    background-color: var(--HijauTua); /* Dark green background */
-    color: var(--textColor1); /* Dark brown text */
-    font-family: 'Arial', sans-serif;
-}
-
-/* Navbar */
-.navbar {
-    background-color: var(--HijauTua);
-    color: white;
-    padding: 10px;
-}
-
-.navbar .navbar-brand, .navbar .nav-link {
-    color: white;
-}
-
-.navbar .nav-link:hover {
-    color: var(--primary-btn-hover);
-}
-
-/* Filter Buttons */
-.filter-buttons-container {
-    background-color: var(--HijauTua); /* Warna hijau yang sama dengan header */
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    padding: 20px 0;
-    margin-bottom: 50px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Style tombol filter */
-.filter-buttons-container .btn-filter {
-    background-color: var(--btn-filter-bg);
-    color: var(--textColor1);
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    border: none;
-}
-
-/* Style untuk tombol yang aktif */
-.filter-buttons-container .btn-filter.active {
-    background-color: var(--btn-filter-active-bg);
-    color: black;
-}
-
-/* Hover effect untuk tombol */
-.filter-buttons-container .btn-filter:hover {
-    background-color: var(--btn-filter-active-bg);
-    color: black;
-}
-
-/* Content List */
-.content-list {
-    margin-top: 30px;
-}
-
-/* Card Hover Effect */
-.content-list .card {
-    border: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.content-list .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-.content-list .card img {
-    border-radius: 10px;
-    height: 150px;
-    object-fit: cover;
-}
-
-.content-list .card-body {
-    padding: 10px;
-}
-
-.content-list .btn-success {
-    border-radius: 50px;
-    padding: 5px 10px;
-    font-size: 14px;
-}
-
-.content-list .d-flex {
-    background-color: #121212; /* Background hitam */
-    border-radius: 10px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.content-list .d-flex:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-.content-list img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.content-list h6 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.content-list .btn-circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    color: white;
-    background-color: #1ed760;
-    border: none;
-    transition: background-color 0.3s ease;
-}
-
-.content-list .btn-circle:hover {
-    background-color: #1aa34a;
-}
-
-/* Footer Section */
-footer {
-    background-color: var(--cokelatTua);
-    color: var(--white);
-}
-
-footer .footer-description {
-    max-width: 500px;
-}
-
-.footer-description h3,
-.footer-social h3 {
-    color: var(--white);
-}
-
-.footer-social ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.footer-social a {
-    color: var(--white);
-}
-
-.footer-social a:hover {
-    color: var(--cokelatMuda);
-}
-
-.footer-copyright {
-    background-color: var(--cokelatTua);
-    color: var(--cokelatMuda);
-    padding: 10px;
-}
-
-/* Buttons */
-.btn-primary {
-    background-color: var(--cokelatTua);
-    border-color: var(--cokelatTua);
-}
-
-.btn-secondary {
-    background-color: var(--cokelatMuda);
-    border-color: var(--cokelatMuda);
-}
-
-.btn-primary:hover {
-    background-color: var(--cokelatTua);
-    border-color: var(--cokelatTua);
-}
-
-.btn-secondary:hover {
-    background-color: var(--cokelatTua);
-    border-color: var(--cokelatTua);
-}
-
-/* General Navbar Styling */
-.navbar {
-    background-color: var(--navbar-bg);
-    padding: 20px;
-}
-
-.navbar .navbar-brand, .navbar .nav-link {
-    color: white;
-}
-
-.navbar .nav-link:hover {
-    color: #ff6347; /* Primary button hover color */
-}
 
 /* Carousel Styling */
 #selfcareCarousel {
@@ -233,105 +14,6 @@ footer .footer-description {
     border-radius: 10px;
 }
 
-/* Meditation Section */
-#meditation {
-    background-color: var(--cokelatMuda);
-    padding: 40px;
-    border-radius: 10px;
-}
-
-.meditation-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.meditation-item {
-    background-color: var(--cokelatTua);
-    padding: 20px;
-    border-radius: 10px;
-    width: 250px;
-    color: var(--white);
-}
-
-.meditation-item h3 {
-    color: var(--white);
-}
-
-.meditation-item audio {
-    width: 100%;
-    margin-top: 10px;
-}
-
-/* Stopwatch Section */
-#countdown {
-    background-color: var(--HijauMuda);
-    border-radius: 10px;
-    padding: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#timeDisplay {
-    font-size: 3rem;
-    color: var(--HijauMuda);
-    font-weight: bold;
-}
-
-#timer {
-    position: relative;
-}
-
-#circleProgress {
-    border-radius: 50%;
-    border: 10px solid var(--cokelatTua);
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-}
-
-/* Input and Button Styles */
-.input-container label {
-    font-size: 1.1rem;
-    color: var(--textColor2);
-}
-
-#timeInput {
-    background-color: var(--HijauMuda);
-    border: 1px solid var(--HijauMuda);
-    color: var(--textColor1);
-}
-
-.button-container button {
-    margin-top: 10px;
-}
-
-#startButton {
-    background-color: var(--cokelatTua);
-    color: var(--white);
-}
-
-#resetButton {
-    background-color: var(--cokelatMuda);
-    color: var(--textColor1);
-}
-
-#startButton:hover {
-    background-color: var(--cokelatTua);
-}
-
-#resetButton:hover {
-    background-color: var(--cokelatTua);
-}
-
-/* Footer Social Icons */
-.social-icons i {
-    font-size: 24px;
-    color: #333;
-}
-
-.social-icons a:hover i {
-    color: #ff6347; /* Primary hover color */
-}
 
 /* Carousel Styling */
 #selfcareCarousel {
@@ -359,185 +41,126 @@ footer .footer-description {
     display: none; /* Menghilangkan panah geser */
 }
 
-/* Header Bar Styling */
-.header-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #5F6F52; /* Hijau Tua */
-    padding: 15px 20px;
-    border-radius: 15px;
-    color: #ffffff; /* Putih */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Efek bayangan */
-    width: 90%;
-    margin-top: 50px;
-     /* Membuatnya berada di tengah */
+/* Color Palette */
+:root {
+    --primary-dark: #5F6F52;
+    --primary-light: #A9B388;
+    --secondary-light: #FEFAE0;
+    --accent: #B99470;
 }
 
-/* Centering the text */
-.header-bar h2 {
-    font-size: 1.8rem; /* Ukuran font */
-    margin: 0;
-    text-align: center;
-    flex: 1; /* Memastikan teks berada di tengah */
-    font-weight: bold;
-    color: #ffffff;
-    letter-spacing: 0.05rem; /* Spasi antar huruf */
-}
-
-/* Icons styling */
-.header-bar i {
-    font-size: 1.5rem; /* Ukuran ikon */
-    color: #ffffff;
-    cursor: pointer; /* Menambahkan efek pointer */
-}
-
-.header-icons {
-    display: flex;
-    gap: 20px; /* Jarak antar ikon */
-}
-
-/* CSS BAKAL 3 TOMBOL MELAYANG Container untuk tombol kategori */
-.category-buttons-container {
-    overflow-x: auto; /* Mengizinkan scroll horizontal */
-    white-space: nowrap; /* Menghindari baris baru */
-    padding: 10px 0;
-    display: flex;
-    justify-content: center;
-}
-
-/* Gaya untuk tombol kategori */
-.category-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.category-btn {
-    padding: 10px 20px;
-    border-radius: 20px;
-    border: none;
-    background-color: var(--cokelatMuda); /* Warna cokelat muda (background tombol) */
-    color: var(--HijauTua); /* Warna teks hijau tua */
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap; /* Mencegah teks melampaui batas */
-}
-
-/* Tombol aktif */
-.category-btn.active {
-    background-color: var(--HijauMuda); /* Warna hijau muda untuk tombol aktif */
-    color: var(--cokelatTua); /* Warna cokelat tua untuk teks aktif */
-}
-
-/* Hover efek */
-.category-btn:hover {
-    background-color: var(--cokelatTua); /* Warna cokelat tua saat hover */
-    color: var(--textColor1); /* Warna teks (textColor1) saat hover */
-}
-
-/* Hapus scrollbar untuk elemen yang dapat di-scroll */
-.category-buttons-container::-webkit-scrollbar {
-    display: none; /* Untuk browser berbasis WebKit */
-}
-
-.category-buttons-container {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-}
-
-/* Styling untuk tombol utama */
-.d-flex {
-    background-color: #121212; /* Background hitam */
-    border-radius: 10px;
-    padding: 15px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.d-flex:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Styling untuk teks */
-.d-flex h6 {
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-/* Tombol lingkaran */
-.btn-circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    color: white;
-    background-color: #1ed760;
-    border: none;
-    transition: background-color 0.3s ease;
-}
-
-.btn-circle:hover {
-    background-color: #1aa34a;
-}
-
-.modal-lg {
-    max-width: 100%;
-    /* Lebar maksimal 90% dari layar */
-}
-
-.modal-body {
-    overflow-x: auto;
-    /* Menambahkan scroll horizontal jika elemen terlalu panjang */
-}
-.custom-modal-dialog {
-    max-width: 5%;
-    /* Lebar modal menjadi 90% dari layar */
-    height: 80vh;
-    /* Pastikan modal tumbuh sesuai dengan isinya */
-}
-
-.modal-content {
-    height: auto;
-    /* Pastikan konten modal juga otomatis mengikuti isinya */
-    min-height: 300px;
-    /* Berikan batas minimum tinggi modal */
-}
-
-.modal-body {
-    overflow: hidden;
-    /* Hilangkan scroll jika ada */
-    padding: 20px;
-    /* Berikan ruang ekstra untuk tata letak yang rapi */
-}
-
-@media (min-width: 992px) {
-    .custom-modal-dialog {
-        height: 400px;
-        /* Tinggi tetap untuk layar besar */
-    }
-}
-.sound-card {
-    max-width: 500px !important;
-    background-color: #f8f9fa;
-    /* Warna latar belakang yang cerah */
+#meditation {
+    background-color: var(--secondary-light);
+    padding: 3rem 0;
     border-radius: 8px;
-    /* Membuat sudut melengkung */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    /* Bayangan lembut */
-    padding: 1px;
-    /* Padding lebih kecil */
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    margin: 20px 20px;
-    /* Jarak antar card yang lebih kecil */
 }
+
+#meditation h2 {
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+#meditation p {
+    color: var(--primary-light);
+}
+
+.meditation-card {
+    background-color: var(--primary-light);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.meditation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.meditation-icon {
+    font-size: 2rem;
+    color: var(--primary-dark);
+    flex-shrink: 0;
+}
+
+.meditation-content {
+    flex: 1;
+}
+
+.meditation-title {
+    color: var(--primary-dark);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.meditation-audio {
+    width: 100%;
+    height: 35px;
+}
+
+
+
+/* PERSONAL SOUND */
+#personal-sounds {
+    background-color: var(--secondary-light);
+    padding: 3rem 0;
+    border-radius: 8px;
+}
+
+#personal-sounds h2 {
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+#personal-sounds p {
+    color: var(--primary-light);
+}
+
+.sound-card {
+    background-color: var(--primary-light);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 .sound-card:hover {
-    transform: scale(1.05);
-    /* Efek hover memperbesar elemen */
-    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
-    /* Bayangan lebih tajam saat dihover */
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sound-icon {
+    font-size: 2rem;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.sound-content {
+    flex: 1;
+}
+
+.sound-title {
+    color: var(--primary-dark);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.sound-description {
+    color: var(--primary-dark);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.sound-audio {
+    width: 100%;
+    height: 35px;
+}
+
+.upload-form {
+    background-color: var(--primary-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
